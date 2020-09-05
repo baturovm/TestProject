@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorOnPrimary">#FFF</color>
+    <color name="colorPrimary">#6936D6</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#57C6DE</color>
+
+    <color name="snackColor">#A77DFF</color>
+    <color name="textColor">#000</color>
+    <color name="subTextColor">#4B4B4B</color>
+
+    <color name="darkBack">#4B000000</color>
+    <color name="grey">#EFEFEF</color>
+
+    <color name="rippleColor">#D7F6F8</color>
+    <color name="black">#0000</color>
+</resources>

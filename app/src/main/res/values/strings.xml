@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">TestProject</string>
+    <string name="title_movie_list">Фильмы</string>
+    <string name="empty_text">Пусто</string>
+    <string name="try_again">Повторить</string>
+    <string name="error_internet">Ошибка подключения сети</string>
+    <string name="year">год</string>
+    <string name="kinopoisk">КиноПоиск</string>
+    <string name="genres">Жанры</string>
+    <string name="movies">Фильмы</string>
+</resources>
