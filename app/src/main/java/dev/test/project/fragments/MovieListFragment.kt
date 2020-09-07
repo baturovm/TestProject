@@ -38,6 +38,8 @@ class MovieListFragment : MvpAppCompatFragment(R.layout.fragment_movie_list), Mo
         exitTransition = MaterialSharedAxis(
             MaterialSharedAxis.Z, true)
         statePosition = savedInstanceState?.getParcelable("statePosition")
+        val checkedPosition = savedInstanceState?.getInt("checkedPosition")
+        checkedPosition?.let { adapter.setChecked(it) }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,7 +47,6 @@ class MovieListFragment : MvpAppCompatFragment(R.layout.fragment_movie_list), Mo
         rv_movie_list.adapter = adapter
         adapter.setOnItemClickListener(object : OnItemClickListener {
             override fun onGenreClick(item: String?) {
-                presenter.checkedPosition = adapter.checkedPosition
                 presenter.filterData(item)
             }
             override fun onMovieClick(item: Movie) {
@@ -66,13 +67,7 @@ class MovieListFragment : MvpAppCompatFragment(R.layout.fragment_movie_list), Mo
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putParcelable("statePosition", statePosition)
-        outState.putInt("checkedPosition", presenter.checkedPosition)
-    }
-
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-        val checkedPosition = savedInstanceState?.getInt("checkedPosition")
-        checkedPosition?.let { adapter.setChecked(it) }
+        outState.putInt("checkedPosition", adapter.checkedPosition)
     }
 
     override fun initView(list: MutableList<Any>) {
