@@ -43,7 +43,7 @@ class MovieInfoFragment : Fragment(R.layout.fragment_movie_info) {
     }
 
     private fun initView() {
-        toolbar_movie_info.title = movie?.titleEN
+        title_en_movie_info.text = movie?.titleEN
         Glide.with(requireContext())
             .load(movie?.imageURL)
             .transform(CenterCrop(), RoundedCorners(pxFromDp(requireContext(), 4)))
