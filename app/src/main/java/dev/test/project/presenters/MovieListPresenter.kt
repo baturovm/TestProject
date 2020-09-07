@@ -28,6 +28,8 @@ class MovieListPresenter : MvpPresenter<MovieListView>() {
     private var moviesObject: MoviesObject? = null
     private var filteredList: List<Movie>? = null
 
+    var checkedPosition: Int = -1
+
     override fun onFirstViewAttach() {
         retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())

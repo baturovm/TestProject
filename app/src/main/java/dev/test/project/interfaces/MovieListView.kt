@@ -1,7 +1,6 @@
 package dev.test.project.interfaces
 
 import dev.test.project.items.Movie
-import dev.test.project.items.MoviesObject
 import moxy.MvpView
 import moxy.viewstate.strategy.alias.AddToEnd
 import moxy.viewstate.strategy.alias.AddToEndSingle

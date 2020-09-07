@@ -1,11 +1,9 @@
 package dev.test.project.fragments
 
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -14,7 +12,6 @@ import dev.test.project.R
 import dev.test.project.items.Movie
 import dev.test.project.utils.pxFromDp
 import kotlinx.android.synthetic.main.fragment_movie_info.*
-import kotlinx.android.synthetic.main.fragment_movie_list.*
 import kotlin.math.roundToInt
 
 class MovieInfoFragment : Fragment(R.layout.fragment_movie_info) {

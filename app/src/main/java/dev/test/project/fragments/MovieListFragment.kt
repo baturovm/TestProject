@@ -45,6 +45,7 @@ class MovieListFragment : MvpAppCompatFragment(R.layout.fragment_movie_list), Mo
         rv_movie_list.adapter = adapter
         adapter.setOnItemClickListener(object : OnItemClickListener {
             override fun onGenreClick(item: String?) {
+                presenter.checkedPosition = adapter.checkedPosition
                 presenter.filterData(item)
             }
             override fun onMovieClick(item: Movie) {
@@ -65,7 +66,7 @@ class MovieListFragment : MvpAppCompatFragment(R.layout.fragment_movie_list), Mo
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putParcelable("statePosition", statePosition)
-        outState.putInt("checkedPosition", adapter.checkedPosition)
+        outState.putInt("checkedPosition", presenter.checkedPosition)
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
