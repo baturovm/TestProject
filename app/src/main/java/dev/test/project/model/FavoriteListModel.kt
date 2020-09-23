@@ -3,6 +3,8 @@ package dev.test.project.model
 import dev.test.project.data.DatabaseHelper
 import dev.test.project.items.Movie
 
+
+/*Model для списка избранного*/
 class FavoriteListModel {
 
     private val database = DatabaseHelper()

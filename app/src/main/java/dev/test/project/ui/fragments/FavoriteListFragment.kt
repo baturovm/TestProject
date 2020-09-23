@@ -5,22 +5,18 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import dev.test.project.R
+import dev.test.project.abstracts.BaseFragment
 import dev.test.project.adapters.FavoriteListAdapter
-import dev.test.project.adapters.MovieListAdapter.Companion.GENRES_TYPE
-import dev.test.project.adapters.MovieListAdapter.Companion.MOVIES_TYPE
-import dev.test.project.adapters.MovieListAdapter.Companion.TITLE_TYPE
 import dev.test.project.interfaces.OnMovieClickListener
-import dev.test.project.interfaces.OnMoviesClickListener
 import dev.test.project.items.Movie
 import dev.test.project.presentation.presenter.FavoriteListPresenter
 import dev.test.project.presentation.view.FavoriteListView
 import dev.test.project.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_favorite_list.*
-import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
-class FavoriteListFragment: MvpAppCompatFragment(R.layout.fragment_favorite_list), FavoriteListView {
+class FavoriteListFragment: BaseFragment(R.layout.fragment_favorite_list), FavoriteListView {
 
     private val adapter = FavoriteListAdapter()
     private lateinit var layoutManager: GridLayoutManager
@@ -43,7 +39,7 @@ class FavoriteListFragment: MvpAppCompatFragment(R.layout.fragment_favorite_list
             }
         })
         to_movies_btn_favorite_list.setOnClickListener {
-            requireActivity().nav_view_main.selectedItemId = R.id.movieListFragment
+            setSelectedTab(R.id.movieListFragment)
         }
     }
 
@@ -55,7 +51,7 @@ class FavoriteListFragment: MvpAppCompatFragment(R.layout.fragment_favorite_list
 
     //Задаем и показываем список фильмов
     override fun showMovies(movies: List<Movie>) {
-        empty_favorite_list.setVisibility(false)
+        showEmptyList(false)
         showLoading(false)
         rv_favorite_list.setVisibility(true)
         adapter.setData(movies.toMutableList())
@@ -80,8 +76,8 @@ class FavoriteListFragment: MvpAppCompatFragment(R.layout.fragment_favorite_list
         if(value) {
             showLoading(false)
             rv_favorite_list.setVisibility(false)
-            empty_favorite_list.setVisibility(true)
         }
+        empty_favorite_list.setVisibility(value)
     }
 
     //Настройка RecyclerView

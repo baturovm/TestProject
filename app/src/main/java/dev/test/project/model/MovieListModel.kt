@@ -8,6 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Callback
 
+/*Model для списка фильмов и жанров*/
 class MovieListModel {
 
     private val database: DatabaseHelper = DatabaseHelper()

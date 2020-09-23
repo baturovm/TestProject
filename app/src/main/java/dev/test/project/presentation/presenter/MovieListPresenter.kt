@@ -15,6 +15,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/*Презентер для списка жанров и фильмов*/
 class MovieListPresenter : MvpPresenter<MovieListView>() {
 
     var moviesObject: MoviesObject? = null
@@ -44,7 +45,7 @@ class MovieListPresenter : MvpPresenter<MovieListView>() {
                     moviesObject = response.body()
                     mapData()
                 } else {
-                    viewState.showError(context.getString(R.string.bad_code))
+                    viewState.showError(ResourceUtils.getString(R.string.bad_code))
                 }
             }
 
@@ -77,6 +78,7 @@ class MovieListPresenter : MvpPresenter<MovieListView>() {
         }
     }
 
+    //Добавление или удаление из избранного
     fun changeFavorite(favorited: Boolean, item: Movie) {
         item.favorited = favorited
         if (favorited)

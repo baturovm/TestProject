@@ -1,11 +1,7 @@
 package dev.test.project.ui.fragments
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -17,7 +13,6 @@ import dev.test.project.presentation.presenter.MovieInfoPresenter
 import dev.test.project.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_movie_info.*
-import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
 class MovieInfoFragment : BaseFragment(R.layout.fragment_movie_info), MovieInfoView {
@@ -41,11 +36,13 @@ class MovieInfoFragment : BaseFragment(R.layout.fragment_movie_info), MovieInfoV
         }
     }
 
+    //Задаем результат работы фрагмента
     override fun onDetach() {
         super.onDetach()
         setNavigationResult(MOVIE_RESULT_KEY, presenter.movie)
     }
 
+    //Показываем данные фильма
     override fun initView(movie: Movie) {
         requireActivity().toolbar_title.text = movie.titleEN
         favorite_btn_movie_info.isActivated = movie.favorited

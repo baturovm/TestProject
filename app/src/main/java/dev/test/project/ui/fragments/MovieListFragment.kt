@@ -7,6 +7,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import dev.test.project.R
+import dev.test.project.abstracts.BaseFragment
 import dev.test.project.adapters.MovieListAdapter
 import dev.test.project.adapters.MovieListAdapter.Companion.GENRES_TYPE
 import dev.test.project.adapters.MovieListAdapter.Companion.MOVIES_TYPE
@@ -17,12 +18,10 @@ import dev.test.project.items.Genre
 import dev.test.project.items.Movie
 import dev.test.project.presentation.presenter.MovieListPresenter
 import dev.test.project.utils.*
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_movie_list.*
-import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
-class MovieListFragment : MvpAppCompatFragment(R.layout.fragment_movie_list), MovieListView {
+class MovieListFragment : BaseFragment(R.layout.fragment_movie_list), MovieListView {
 
     private val adapter = MovieListAdapter()
     private lateinit var layoutManager: GridLayoutManager
@@ -30,7 +29,7 @@ class MovieListFragment : MvpAppCompatFragment(R.layout.fragment_movie_list), Mo
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().toolbar_title.text = getString(R.string.movies)
+        setTitleToolbar(getString(R.string.movies))
         setupRecyclerView()
         adapter.setOnItemClickListener(object : OnMoviesClickListener {
             override fun onGenreClick(item: Genre?) {

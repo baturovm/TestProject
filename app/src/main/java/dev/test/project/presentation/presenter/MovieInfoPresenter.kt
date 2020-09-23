@@ -5,6 +5,7 @@ import dev.test.project.items.Movie
 import dev.test.project.model.MovieInfoModel
 import moxy.MvpPresenter
 
+/*Презентер для экрана информации по фильму*/
 class MovieInfoPresenter : MvpPresenter<MovieInfoView>() {
 
     var movie: Movie? = null
@@ -21,6 +22,7 @@ class MovieInfoPresenter : MvpPresenter<MovieInfoView>() {
         model.cancelAll()
     }
 
+    //Добавление или удаление из избранного
     fun changeFavorite(favorited: Boolean) {
         movie?.favorited =favorited
         if (favorited)

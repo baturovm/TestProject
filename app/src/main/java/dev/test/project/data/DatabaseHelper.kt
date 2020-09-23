@@ -18,6 +18,7 @@ class DatabaseHelper {
 
     //Запись в БД
     fun addItem(item: Movie) {
+        item.favorited = true
         realm.executeTransaction { realm ->
             realm.insert(item)
         }
@@ -36,7 +37,7 @@ class DatabaseHelper {
     //Получение списка из БД
     fun getItems(): List<Movie> {
         val list = realm.where(Movie::class.java).findAll()
-        return realm.copyFromRealm(list)
+        return realm.copyFromRealm(list).sortedBy { it.titleRU }
     }
 
     //Проверка на существование в БД

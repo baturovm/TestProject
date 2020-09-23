@@ -7,6 +7,7 @@ import dev.test.project.model.FavoriteListModel
 import dev.test.project.presentation.view.FavoriteListView
 import moxy.MvpPresenter
 
+/*Презентер для списка избранного*/
 class FavoriteListPresenter: MvpPresenter<FavoriteListView>() {
 
     var statePosition: Parcelable? = null
@@ -24,6 +25,7 @@ class FavoriteListPresenter: MvpPresenter<FavoriteListView>() {
         model.cancelAll()
     }
 
+    //Получения списка избранных
     private fun getFavoriteList() {
         val list = model.getFavoriteList()
         when {
@@ -32,7 +34,9 @@ class FavoriteListPresenter: MvpPresenter<FavoriteListView>() {
         }
     }
 
+    //Добавление или удаление из избранного
     fun changeFavorite(favorited: Boolean, item: Movie) {
+        item.favorited = favorited
         if (favorited)
             model.addFavorite(item)
         else
