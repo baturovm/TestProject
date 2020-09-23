@@ -1,62 +1,34 @@
 package dev.test.project.items
 
-import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import java.util.ArrayList
+import dev.test.project.utils.StringRealmListParceler
+import io.realm.RealmList
+import io.realm.RealmModel
+import io.realm.annotations.PrimaryKey
+import io.realm.annotations.RealmClass
+import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.WriteWith
 
-data class Movie(
+@Parcelize
+@RealmClass
+open class Movie(
+    @PrimaryKey
     @SerializedName("id")
-    val id: Int,
+    var id: Int = 0,
     @SerializedName("localized_name")
-    val titleRU: String?,
+    var titleRU: String? = null,
     @SerializedName("name")
-    val titleEN: String?,
+    var titleEN: String? = null,
     @SerializedName("year")
-    val year: Int,
+    var year: Int = 0,
     @SerializedName("rating")
-    val rating: String?,
+    var rating: Double = 0.0,
     @SerializedName("image_url")
-    val imageURL: String?,
+    var imageURL: String? = null,
     @SerializedName("description")
-    val description: String?,
+    var description: String? = null,
     @SerializedName("genres")
-    val genres: ArrayList<String>?
-) : Parcelable {
-    constructor(parcel: Parcel) : this(
-        parcel.readInt(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readInt(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.readString(),
-        parcel.createStringArrayList()
-    ) {
-    }
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(id)
-        parcel.writeString(titleRU)
-        parcel.writeString(titleEN)
-        parcel.writeInt(year)
-        parcel.writeString(rating)
-        parcel.writeString(imageURL)
-        parcel.writeString(description)
-        parcel.writeStringList(genres)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<Movie> {
-        override fun createFromParcel(parcel: Parcel): Movie {
-            return Movie(parcel)
-        }
-
-        override fun newArray(size: Int): Array<Movie?> {
-            return arrayOfNulls(size)
-        }
-    }
-}
+    var genres: @WriteWith<StringRealmListParceler>  RealmList<String>? = null,
+    var favorited: Boolean = false
+) : RealmModel, Parcelable

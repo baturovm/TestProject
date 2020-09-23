@@ -7,16 +7,23 @@
 
     <fragment
         android:id="@+id/movieInfoFragment"
-        android:name="dev.test.project.fragments.MovieInfoFragment"
-        android:label="fragment_movie_info"
+        android:name="dev.test.project.ui.fragments.MovieInfoFragment"
         tools:layout="@layout/fragment_movie_info" />
     <fragment
         android:id="@+id/movieListFragment"
-        android:name="dev.test.project.fragments.MovieListFragment"
-        android:label="fragment_movies"
+        android:name="dev.test.project.ui.fragments.MovieListFragment"
         tools:layout="@layout/fragment_movie_list" >
         <action
             android:id="@+id/action_movieListFragment_to_movieInfoFragment"
+            app:destination="@id/movieInfoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/favoriteListFragment"
+        android:name="dev.test.project.ui.fragments.FavoriteListFragment"
+        tools:layout="@layout/fragment_favorite_list">
+        <action
+            android:id="@+id/action_favoriteListFragment_to_movieInfoFragment"
             app:destination="@id/movieInfoFragment" />
     </fragment>
 </navigation>

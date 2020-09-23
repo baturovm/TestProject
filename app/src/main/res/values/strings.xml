@@ -1,11 +1,15 @@
 <resources>
     <string name="app_name">TestProject</string>
     <string name="title_movie_list">Фильмы</string>
-    <string name="empty_text">Пусто</string>
+    <string name="empty_text">Пока нет фильмов</string>
     <string name="try_again">Повторить</string>
     <string name="error_internet">Ошибка подключения сети</string>
     <string name="year">год</string>
     <string name="kinopoisk">КиноПоиск</string>
     <string name="genres">Жанры</string>
     <string name="movies">Фильмы</string>
+    <string name="null_rating">--</string>
+    <string name="favorite">Избранное</string>
+    <string name="go_to_movies">Перейти к фильмам</string>
+    <string name="bad_code">Сервер вернул неправильный код!</string>
 </resources>

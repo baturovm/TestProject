@@ -9,7 +9,7 @@
     android:checkable="true"
     android:clickable="true"
     android:focusable="true"
-    app:checkedIconTint="@color/black"
+    app:checkedIconTint="@android:color/transparent"
     app:cardElevation="0dp"
     app:cardCornerRadius="0dp"
     app:cardForegroundColor="@android:color/transparent"

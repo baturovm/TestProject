@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 29
@@ -65,7 +66,7 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:4.8.0"
 
     //Material Components
-    implementation 'com.google.android.material:material:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
 
     //Gson
     implementation 'com.google.code.gson:gson:2.8.6'

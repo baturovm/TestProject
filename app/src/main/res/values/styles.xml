@@ -10,6 +10,26 @@
         <item name="colorOnPrimary">@color/colorOnPrimary</item>
         <item name="colorPrimaryVariant">@color/colorAccent</item>
         <item name="android:statusBarColor">@color/colorPrimary</item>
+    </style>
 
+    <style name="TitleText" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/colorOnPrimary</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="IconButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="iconPadding">0dp</item>
+        <item name="iconGravity">textStart</item>
+        <item name="icon">@drawable/favorite_states</item>
+    </style>
+
+    <style name="BottomNavigationViewStyle" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+
+        <item name="itemIconTint">@color/nav_view_text_color</item>
+        <item name="itemTextColor">@color/nav_view_text_color</item>
     </style>
 </resources>
