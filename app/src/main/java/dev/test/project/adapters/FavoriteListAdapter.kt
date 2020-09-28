@@ -8,7 +8,7 @@ import dev.test.project.adapters.holders.MoviesViewHolder
 import dev.test.project.interfaces.OnMovieClickListener
 import dev.test.project.items.Movie
 
-class FavoriteListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class FavoriteListAdapter : RecyclerView.Adapter<MoviesViewHolder>() {
 
     private var items: MutableList<Movie> = mutableListOf()
     private lateinit var clickListener: OnMovieClickListener
@@ -30,7 +30,7 @@ class FavoriteListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         this.clickListener = clickListener
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
         return MoviesViewHolder(clickListener,
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_movie, parent, false))
@@ -38,8 +38,7 @@ class FavoriteListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemCount(): Int = items.size
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        holder as MoviesViewHolder
+    override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
         holder.bind(items[position])
     }
 }
