@@ -7,7 +7,7 @@ import dev.test.project.utils.setVisibility
 import kotlinx.android.synthetic.main.activity_main.*
 import moxy.MvpAppCompatFragment
 
-abstract class BaseFragment(@LayoutRes id: Int): MvpAppCompatFragment(id) {
+abstract class BaseFragment(@LayoutRes layoutId: Int): MvpAppCompatFragment(layoutId) {
 
     fun showBackIcon(value: Boolean) {
         when(value) {
@@ -28,8 +28,8 @@ abstract class BaseFragment(@LayoutRes id: Int): MvpAppCompatFragment(id) {
         requireActivity().toolbar_title.text = title
     }
 
-    override fun onDetach() {
-        super.onDetach()
+    override fun onDestroyView() {
+        super.onDestroyView()
         showBackIcon(false)
         showBottomNavigation(true)
     }
