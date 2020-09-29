@@ -3,8 +3,11 @@ package dev.test.project.model
 import dev.test.project.data.DatabaseHelper
 import dev.test.project.items.Movie
 
-/*Model для работы с информацией о фильме*/
+/**
+ * Model для работы с информацией о фильме
+ */
 class MovieInfoModel {
+
     private val database: DatabaseHelper = DatabaseHelper()
 
     //Закрытие db

@@ -6,7 +6,9 @@ import dev.test.project.model.FavoriteListModel
 import dev.test.project.presentation.view.FavoriteListView
 import moxy.MvpPresenter
 
-/*Презентер для списка избранного*/
+/**
+ * Презентер для списка избранного
+ */
 class FavoriteListPresenter: MvpPresenter<FavoriteListView>() {
 
     var statePosition: Parcelable? = null

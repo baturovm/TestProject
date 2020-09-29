@@ -10,7 +10,7 @@ import kotlinx.coroutines.withContext
 import retrofit2.Callback
 
 /**
- *Получение и обработка данных
+ * Получение и обработка данных
  */
 class DataHelper(private val database: DatabaseHelper) {
 
@@ -26,7 +26,11 @@ class DataHelper(private val database: DatabaseHelper) {
         retrofitHelper.fetchMovies(callback)
     }
 
-    //Подготовка данных
+    /**
+     * Получение обработанного списка
+     * @param data данные из сети
+     * @return отсортированный список фильмов и жанры
+     */
     suspend fun mapData(data: MoviesObject): MutableList<Any>
             = withContext(Dispatchers.IO) {
         data.movies = data.movies.sortedBy { it.titleRU }
@@ -40,7 +44,11 @@ class DataHelper(private val database: DatabaseHelper) {
         }
     }
 
-    //Получение списка избранного
+    /**
+     * Получение списка избранного
+     * @param list список фильмов
+     * @return список избранного
+     */
     private suspend fun getFavoritedMovies(list: List<Movie>): List<Movie>
             = withContext(Dispatchers.IO) {
         list.forEach { movie ->
@@ -51,7 +59,11 @@ class DataHelper(private val database: DatabaseHelper) {
         return@withContext list
     }
 
-    //Достаем список жанров
+    /**
+     * Достаем список жанров
+     * @param list список фильмов
+     * @return список жанров
+     */
     private suspend fun getGenres(list: List<Movie>): List<Genre>
             = withContext(Dispatchers.IO) {
         var genres = mutableListOf<String>()
@@ -66,7 +78,12 @@ class DataHelper(private val database: DatabaseHelper) {
         }
     }
 
-    //Фильтр данных по жанру
+    /**
+     * Фильтр данных по жанру
+     * @param genre фильтруемый жанр
+     * @param movies список фильмов
+     * @return отфильтрованный список фильмов
+     */
     suspend fun filterData(genre: String, movies: List<Movie>): List<Movie>
             = withContext(Dispatchers.IO){
         val filteredList = mutableListOf<Movie>()

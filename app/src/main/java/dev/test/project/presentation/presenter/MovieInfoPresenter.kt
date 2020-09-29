@@ -5,7 +5,9 @@ import dev.test.project.items.Movie
 import dev.test.project.model.MovieInfoModel
 import moxy.MvpPresenter
 
-/*Презентер для экрана информации по фильму*/
+/**
+ * Презентер для экрана информации по фильму
+ */
 class MovieInfoPresenter : MvpPresenter<MovieInfoView>() {
 
     var movie: Movie? = null

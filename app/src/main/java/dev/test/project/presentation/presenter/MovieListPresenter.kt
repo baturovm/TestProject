@@ -15,7 +15,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-/*Презентер для списка жанров и фильмов*/
+/**
+ * Презентер для списка жанров и фильмов
+ */
 class MovieListPresenter : MvpPresenter<MovieListView>() {
 
     var moviesObject: MoviesObject? = null
