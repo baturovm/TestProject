@@ -15,7 +15,7 @@ class MovieInfoPresenter : MvpPresenter<MovieInfoView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        movie?.let { viewState.initView(it) }
+        viewState.initView()
     }
 
     //Отмена соединения

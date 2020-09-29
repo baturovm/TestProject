@@ -43,7 +43,8 @@ class MovieInfoFragment : BaseFragment(R.layout.fragment_movie_info), MovieInfoV
     }
 
     //Показываем данные фильма
-    override fun initView(movie: Movie) {
+    override fun initView() {
+        val movie = presenter.movie!!
         requireActivity().toolbar_title.text = movie.titleEN
         favorite_btn_movie_info.isActivated = movie.favorited
         Glide.with(requireContext())

@@ -7,6 +7,6 @@ import moxy.viewstate.strategy.alias.AddToEnd
 interface MovieInfoView: MvpView {
 
     @AddToEnd
-    fun initView(movie: Movie)
+    fun initView()
 
 }
