@@ -12,7 +12,6 @@ import dev.test.project.items.Genre
 import dev.test.project.items.Movie
 import dev.test.project.utils.ResourceUtils
 
-
 class MovieListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -31,24 +30,31 @@ class MovieListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyDataSetChanged()
     }
 
-    fun changeMovies(movies: List<Movie>) {
+    fun setMovies(movies: List<Movie>) {
         val startPos = items.indexOf(moviesString) + 1
         items = items.take(startPos).toMutableList()
         items.addAll(startPos, movies)
         notifyDataSetChanged()
     }
 
-    fun setChecked(item: Genre?) {
+    /**
+     * @param item жанр который нужно выделить
+     */
+    fun setCheckedItem(item: Genre?) {
         if(item!=null) {
             val position = items.indexOf(item)
             checkedGenre = items[position] as Genre
             notifyItemChanged(position)
         } else {
-            checkedGenre?.let {
-                val position = items.indexOf(it)
-                checkedGenre = null
-                notifyItemChanged(position)
-            }
+            uncheckGenre()
+        }
+    }
+
+    fun uncheckGenre() {
+        checkedGenre?.let {
+            val position = items.indexOf(it)
+            checkedGenre = null
+            notifyItemChanged(position)
         }
     }
 
@@ -67,18 +73,16 @@ class MovieListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
         return when(viewType) {
             TITLE_TYPE -> TitleViewHolder(
-                LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_title, parent, false)
+                inflater.inflate(R.layout.item_title, parent, false)
             )
             MOVIES_TYPE -> MoviesViewHolder(clickListener,
-                LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_movie, parent, false)
+                inflater.inflate(R.layout.item_movie, parent, false)
             )
             else -> GenresViewHolder(clickListener,
-                LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_genres, parent, false)
+                inflater.inflate(R.layout.item_genres, parent, false)
             )
         }
     }
