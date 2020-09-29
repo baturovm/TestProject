@@ -4,50 +4,33 @@ import dev.test.project.R
 import dev.test.project.items.Genre
 import dev.test.project.items.Movie
 import dev.test.project.items.MoviesObject
-import dev.test.project.interfaces.ApiService
 import dev.test.project.utils.ResourceUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Callback
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
+/**
+ *Получение и обработка данных
+ */
+class DataHelper(private val database: DatabaseHelper) {
 
-/*
-Работа с сетью и обработка данных
-*/
-class DataHelper {
-
-    private val url = "https://s3-eu-west-1.amazonaws.com/"
-    private var retrofit = Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl(url)
-        .build()
-    private var apiService = retrofit.create(ApiService::class.java)
-    private var call = apiService.getMovies()
+    private val retrofitHelper = RetrofitHelper()
 
     //Отмена соединения
-    fun close() {
-        call.cancel()
+    fun cancel() {
+        retrofitHelper.cancel()
     }
 
     //Запрос данных
-    fun fetchMovies(callback: Callback<MoviesObject>) {
-        if(call.isCanceled or call.isExecuted) {
-            call = call.clone()
-        }
-        call.enqueue(callback)
+    fun getMovies(callback: Callback<MoviesObject>) {
+        retrofitHelper.fetchMovies(callback)
     }
 
     //Подготовка данных
-    suspend fun mapData(data: MoviesObject, database: DatabaseHelper): MutableList<Any>
+    suspend fun mapData(data: MoviesObject): MutableList<Any>
             = withContext(Dispatchers.IO) {
         data.movies = data.movies.sortedBy { it.titleRU }
-        data.movies.forEach { movie ->
-            withContext(Dispatchers.Main) {
-                movie.favorited = database.containsItem(movie.id)
-            }
-        }
+        data.movies = getFavoritedMovies(data.movies)
         data.genres = getGenres(data.movies)
         return@withContext mutableListOf<Any>().apply {
             add(ResourceUtils.getString(R.string.genres))
@@ -55,6 +38,17 @@ class DataHelper {
             add(ResourceUtils.getString(R.string.movies))
             addAll(data.movies)
         }
+    }
+
+    //Получение списка избранного
+    private suspend fun getFavoritedMovies(list: List<Movie>): List<Movie>
+            = withContext(Dispatchers.IO) {
+        list.forEach { movie ->
+            withContext(Dispatchers.Main) {
+                movie.favorited = database.containsItem(movie.id)
+            }
+        }
+        return@withContext list
     }
 
     //Достаем список жанров

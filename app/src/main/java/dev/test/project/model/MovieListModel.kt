@@ -8,26 +8,28 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Callback
 
-/*Model для списка фильмов и жанров*/
+/**
+ * Model для списка фильмов и жанров
+ */
 class MovieListModel {
 
     private val database: DatabaseHelper = DatabaseHelper()
-    private val dataHelper: DataHelper = DataHelper()
+    private val dataHelper: DataHelper = DataHelper(database)
 
     //Отмена соединения и закрытие db
     fun cancelAll() {
-        dataHelper.close()
+        dataHelper.cancel()
         database.close()
     }
 
     //Запрос данных
     fun fetchMovies(callback: Callback<MoviesObject>) {
-        dataHelper.fetchMovies(callback)
+        dataHelper.getMovies(callback)
     }
 
     //Подготовка данных
     suspend fun mapData(data: MoviesObject): MutableList<Any> = withContext(Dispatchers.Main){
-        return@withContext dataHelper.mapData(data, database)
+        return@withContext dataHelper.mapData(data)
     }
 
     //Фильтр данных по жанру
