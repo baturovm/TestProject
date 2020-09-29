@@ -22,7 +22,7 @@ class MovieListPresenter : MvpPresenter<MovieListView>() {
 
     var moviesObject: MoviesObject? = null
 
-    var statePosition: Parcelable? = null
+    var scrollPosition: Parcelable? = null
     var checkedGenre: Genre? = null
 
     private val model = MovieListModel()
