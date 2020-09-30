@@ -15,12 +15,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/toolbar_title"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            style="@style/TitleText"
+            style="@style/ToolbarTitleText"
             tools:text="@string/title_movie_list"/>
     </com.google.android.material.appbar.MaterialToolbar>
 

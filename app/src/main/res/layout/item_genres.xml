@@ -16,15 +16,14 @@
     app:cardBackgroundColor="@color/card_view_states"
     app:rippleColor="@color/rippleColor">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_genre_item"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="10dp"
         android:clickable="false"
-        android:textSize="16sp"
-        android:textColor="@color/textColor"
+        style="@style/GenreText"
         tools:text="Жанр"/>
 
 </com.google.android.material.card.MaterialCardView>

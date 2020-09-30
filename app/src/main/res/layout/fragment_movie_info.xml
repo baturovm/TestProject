@@ -47,23 +47,21 @@
                     style="@style/IconButtonStyle"/>
             </FrameLayout>
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/title_movie_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/textColor"
-                android:textSize="26sp"
-                android:textStyle="bold"
+                style="@style/LargeTitleMovieText"
                 tools:text="Название" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/infoText_movie_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="10dp"
-                android:textColor="@color/subTextColor"
-                android:textSize="16sp"
+                style="@style/InfoMovieText"
                 tools:text="информация" />
 
             <LinearLayout
@@ -71,34 +69,28 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/rating_movie_info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
+                    style="@style/RatingText"
                     tools:text="6,5" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="@string/kinopoisk"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    style="@style/KinoPoiskText"/>
 
             </LinearLayout>
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/desc_movie_info"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginVertical="13dp"
-                android:textColor="@color/textColor"
-                android:textSize="14sp"
+                style="@style/DescriptionText"
                 tools:text="Бен и Алекс, уцелевшие после авиакатастрофы, должны найти общий язык, чтобы выжить в экстремальных условиях далеких заснеженных гор. Когда они понимают, что на помощь к ним никто не придет, они вынуждены отправиться в опасный путь длиной в сотни километров. В борьбе за жизнь между двумя еще вчера незнакомыми людьми неожиданно возникает притяжение." />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

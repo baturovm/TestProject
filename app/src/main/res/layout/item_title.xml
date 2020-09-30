@@ -7,12 +7,10 @@
     android:paddingBottom="8dp"
     android:paddingHorizontal="16dp">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_title_item"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/textColor"
+        style="@style/TitleText"
         tools:text="Заголовок"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

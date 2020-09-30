@@ -17,14 +17,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/empty_text_favorite_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"
-            android:text="@string/empty_text"
-            android:textStyle="bold"
-            android:textSize="21sp"/>
+            style="@style/EmptyText"/>
         <com.google.android.material.button.MaterialButton
             android:id="@+id/to_movies_btn_favorite_list"
             android:layout_width="wrap_content"
