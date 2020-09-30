@@ -10,11 +10,6 @@ class MovieInfoModel {
 
     private val database: DatabaseHelper = DatabaseHelper()
 
-    //Закрытие db
-    fun cancelAll() {
-        database.close()
-    }
-
     //Добавить в избранное
     fun addFavorite(item: Movie) {
         database.addItem(item)

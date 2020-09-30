@@ -15,11 +15,6 @@ class FavoriteListModel {
         return database.getItems()
     }
 
-    //Отмена соединения и закрытие БД
-    fun cancelAll() {
-        database.close()
-    }
-
     //Добавить в избранное
     fun addFavorite(item: Movie) {
         database.addItem(item)

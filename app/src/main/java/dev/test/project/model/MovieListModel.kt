@@ -19,7 +19,6 @@ class MovieListModel {
     //Отмена соединения и закрытие db
     fun cancelAll() {
         dataHelper.cancel()
-        database.close()
     }
 
     //Запрос данных

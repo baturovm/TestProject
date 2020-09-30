@@ -17,12 +17,6 @@ class FavoriteListPresenter: MvpPresenter<FavoriteListView>() {
         getFavoriteList()
     }
 
-    //Отмена соединения
-    override fun onDestroy() {
-        super.onDestroy()
-        model.cancelAll()
-    }
-
     //Получения списка избранных
     private fun getFavoriteList() {
         val list = model.getFavoriteList()

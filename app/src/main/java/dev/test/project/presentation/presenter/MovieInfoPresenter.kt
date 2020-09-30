@@ -18,12 +18,6 @@ class MovieInfoPresenter : MvpPresenter<MovieInfoView>() {
         viewState.initView()
     }
 
-    //Отмена соединения
-    override fun onDestroy() {
-        super.onDestroy()
-        model.cancelAll()
-    }
-
     //Добавление или удаление из избранного
     fun changeFavorite(favorited: Boolean) {
         movie?.favorited =favorited
