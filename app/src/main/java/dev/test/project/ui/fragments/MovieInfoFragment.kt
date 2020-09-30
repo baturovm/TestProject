@@ -14,6 +14,7 @@ import dev.test.project.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_movie_info.*
 import moxy.ktx.moxyPresenter
+import java.text.DecimalFormat
 
 class MovieInfoFragment : BaseFragment(R.layout.fragment_movie_info), MovieInfoView {
 
@@ -21,6 +22,8 @@ class MovieInfoFragment : BaseFragment(R.layout.fragment_movie_info), MovieInfoV
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        showBottomNavigation(false)
+        showBackIcon(true)
         arguments?.let {
             presenter.movie = it.getParcelable(MOVIE_BUNDLE_KEY)
         }
@@ -28,8 +31,6 @@ class MovieInfoFragment : BaseFragment(R.layout.fragment_movie_info), MovieInfoV
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        showBottomNavigation(false)
-        showBackIcon(true)
         favorite_btn_movie_info.setOnClickListener {
             it.toggleActive()
             presenter.changeFavorite(it.isActivated)
@@ -64,9 +65,6 @@ class MovieInfoFragment : BaseFragment(R.layout.fragment_movie_info), MovieInfoV
         "${movie.genres!!.joinToString()}, ${movie.year} ${getString(R.string.year)}"
     }
 
-    private fun getRating(rating: Double) = if(rating==0.0) {
-        getString(R.string.null_rating)
-    } else {
-        rating.toString().substring(0, 3)
-    }
+    private fun getRating(rating: Double?)  =
+        DecimalFormat("#.#").format(rating) ?: getString(R.string.null_rating)
 }

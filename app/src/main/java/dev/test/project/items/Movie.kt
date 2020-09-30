@@ -21,9 +21,9 @@ open class Movie(
     @SerializedName("name")
     var titleEN: String? = null,
     @SerializedName("year")
-    var year: Int = 0,
+    var year: Int? = null,
     @SerializedName("rating")
-    var rating: Double = 0.0,
+    var rating: Double? = null,
     @SerializedName("image_url")
     var imageURL: String? = null,
     @SerializedName("description")
