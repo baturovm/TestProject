@@ -1,6 +1,5 @@
 package dev.test.project.presentation.presenter
 
-import android.os.Parcelable
 import dev.test.project.items.Movie
 import dev.test.project.model.FavoriteListModel
 import dev.test.project.presentation.view.FavoriteListView
@@ -10,8 +9,6 @@ import moxy.MvpPresenter
  * Презентер для списка избранного
  */
 class FavoriteListPresenter: MvpPresenter<FavoriteListView>() {
-
-    var statePosition: Parcelable? = null
 
     private val model = FavoriteListModel()
 

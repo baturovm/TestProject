@@ -1,6 +1,5 @@
 package dev.test.project.presentation.presenter
 
-import android.os.Parcelable
 import dev.test.project.R
 import dev.test.project.items.Genre
 import dev.test.project.presentation.view.MovieListView
@@ -22,7 +21,6 @@ class MovieListPresenter : MvpPresenter<MovieListView>() {
 
     var moviesObject: MoviesObject? = null
 
-    var scrollPosition: Parcelable? = null
     var checkedGenre: Genre? = null
 
     private val model = MovieListModel()

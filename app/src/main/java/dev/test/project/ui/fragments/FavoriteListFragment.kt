@@ -43,23 +43,17 @@ class FavoriteListFragment: BaseFragment(R.layout.fragment_favorite_list), Favor
         }
     }
 
-    //Сохранение состояния списка
-    override fun onPause() {
-        super.onPause()
-        presenter.statePosition = layoutManager.onSaveInstanceState()
-    }
-
     //Задаем и показываем список фильмов
     override fun showMovies(movies: List<Movie>) {
         showEmptyList(false)
         showLoading(false)
         rv_favorite_list.setVisibility(true)
         adapter.setData(movies.toMutableList())
-        setMovieResultChanges()
+        getMovieResultChanges()
     }
 
     //При наличии результата, показываем изменения
-    private fun setMovieResultChanges() {
+    private fun getMovieResultChanges() {
         val movie = getNavigationResult<Movie>(MOVIE_RESULT_KEY)
         if (movie != null) {
             adapter.movieFavorited(movie)
@@ -89,7 +83,6 @@ class FavoriteListFragment: BaseFragment(R.layout.fragment_favorite_list), Favor
     //Настройка колонок и восстановление состояния списка
     private fun setupLayoutManager() {
         layoutManager = GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
-        presenter.statePosition?.let { layoutManager.onRestoreInstanceState(it) }
         rv_favorite_list.layoutManager = layoutManager
     }
 }
