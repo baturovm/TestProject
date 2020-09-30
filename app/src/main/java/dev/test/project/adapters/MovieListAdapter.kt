@@ -41,16 +41,19 @@ class MovieListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
      * @param item жанр который нужно выделить
      */
     fun setCheckedItem(item: Genre?) {
-        if(item!=null) {
-            val position = items.indexOf(item)
-            checkedGenre = items[position] as Genre
-            notifyItemChanged(position)
-        } else {
-            uncheckGenre()
+        when {
+            item != null -> {
+                val position = items.indexOf(item)
+                notifyItemChanged(position)
+                checkedGenre = item
+            }
+            else -> {
+                uncheckGenre()
+            }
         }
     }
 
-    fun uncheckGenre() {
+    private fun uncheckGenre() {
         checkedGenre?.let {
             val position = items.indexOf(it)
             checkedGenre = null

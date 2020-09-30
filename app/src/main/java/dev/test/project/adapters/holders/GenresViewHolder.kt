@@ -15,10 +15,7 @@ class GenresViewHolder(private val clickListener: OnMoviesClickListener,
         itemView.isChecked = checkedGenre == item
         itemView.text_genre_item.text = item.genre.capitalize(Locale.ROOT)
         itemView.setOnClickListener {
-            if(itemView.isChecked)
-                clickListener.onGenreClick(null)
-            else
-                clickListener.onGenreClick(item)
+            clickListener.onGenreClick(item)
         }
     }
 }

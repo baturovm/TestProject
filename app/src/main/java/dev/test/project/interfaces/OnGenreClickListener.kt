@@ -3,5 +3,5 @@ package dev.test.project.interfaces
 import dev.test.project.items.Genre
 
 interface OnGenreClickListener {
-    fun onGenreClick(item: Genre?)
+    fun onGenreClick(item: Genre)
 }

@@ -67,14 +67,16 @@ class MovieListPresenter : MvpPresenter<MovieListView>() {
     }
 
     //Фильтр данных по жанру
-    fun filterData(item: Genre?) {
-        presenterScope.launch {
-            val filteredList = if (item != null) {
-                model.filterData(item.genre, moviesObject!!.movies)
-            } else {
-                moviesObject!!.movies
+    fun filterData(item: Genre) {
+        if(checkedGenre == item) {
+            checkedGenre = null
+            viewState.showMovies(moviesObject!!.movies)
+        } else {
+            checkedGenre = item
+            presenterScope.launch {
+                val filteredList = model.filterData(item.genre, moviesObject!!.movies)
+                viewState.showMovies(filteredList)
             }
-            viewState.showMovies(filteredList)
         }
     }
 

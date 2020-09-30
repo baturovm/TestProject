@@ -35,9 +35,8 @@ class MovieListFragment : BaseFragment(R.layout.fragment_movie_list), MovieListV
         setTitleToolbar(getString(R.string.movies))
         setupRecyclerView()
         adapter.setOnItemClickListener(object : OnMoviesClickListener {
-            override fun onGenreClick(item: Genre?) {
+            override fun onGenreClick(item: Genre) {
                 presenter.filterData(item)
-                presenter.checkedGenre = item
                 adapter.setCheckedItem(item)
             }
 
@@ -52,12 +51,6 @@ class MovieListFragment : BaseFragment(R.layout.fragment_movie_list), MovieListV
                 presenter.changeFavorite(favorited, item)
             }
         })
-    }
-
-    //Сохранение состояния списка
-    override fun onPause() {
-        super.onPause()
-        presenter.checkedGenre = adapter.checkedGenre
     }
 
     //Заполнение данных
