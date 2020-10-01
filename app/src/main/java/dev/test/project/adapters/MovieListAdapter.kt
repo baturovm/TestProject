@@ -40,7 +40,7 @@ class MovieListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
      */
     fun setCheckedItem(item: Genre?) {
         when {
-            item != null -> {
+            item != null && checkedGenre != item -> {
                 val position = items.indexOf(item)
                 notifyItemChanged(position)
                 checkedGenre = item
