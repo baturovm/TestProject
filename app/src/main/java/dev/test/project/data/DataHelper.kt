@@ -11,6 +11,8 @@ import retrofit2.Callback
 
 /**
  * Получение и обработка данных
+ * - Получение отсортированного списка фильмов и жанров
+ * - Фильтр фильмов по жанру
  */
 class DataHelper(private val database: DatabaseHelper) {
 
