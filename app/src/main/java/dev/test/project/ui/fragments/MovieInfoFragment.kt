@@ -22,18 +22,17 @@ class MovieInfoFragment : BaseFragment(R.layout.fragment_movie_info), MovieInfoV
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        showBottomNavigation(false)
-        showBackIcon(true)
         arguments?.let {
             presenter.movie = it.getParcelable(MOVIE_BUNDLE_KEY)
         }
+        showBottomNavigation(false)
+        showBackIcon(true)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         favorite_btn_movie_info.setOnClickListener {
-            it.toggleActive()
-            presenter.changeFavorite(it.isActivated)
+            presenter.changeFavorite(it.toggleActive())
         }
     }
 
@@ -65,6 +64,11 @@ class MovieInfoFragment : BaseFragment(R.layout.fragment_movie_info), MovieInfoV
         "${movie.genres!!.joinToString()}, ${movie.year} ${getString(R.string.year)}"
     }
 
-    private fun getRating(rating: Double?)  =
-        DecimalFormat("#.#").format(rating) ?: getString(R.string.null_rating)
+    private fun getRating(rating: Double?): String {
+        return if (rating != null) {
+            DecimalFormat("#.#").format(rating)
+        } else {
+            getString(R.string.null_rating)
+        }
+    }
 }

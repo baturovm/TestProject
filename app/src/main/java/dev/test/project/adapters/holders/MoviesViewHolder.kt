@@ -25,7 +25,8 @@ class MoviesViewHolder(private val clickListener: OnMovieClickListener, itemView
             clickListener.onMovieClick(item)
         }
         itemView.favorite_btn_movie.setOnClickListener {
-            clickListener.onFavoriteClick(it.toggleActive(), item)
+            item.favorited = it.toggleActive()
+            clickListener.onFavoriteClick(item)
         }
     }
 }

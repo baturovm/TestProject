@@ -81,9 +81,8 @@ class MovieListPresenter : MvpPresenter<MovieListView>() {
     }
 
     //Добавление или удаление из избранного
-    fun changeFavorite(favorited: Boolean, item: Movie) {
-        item.favorited = favorited
-        if (favorited)
+    fun changeFavorite(item: Movie) {
+        if (item.favorited)
             model.addFavorite(item)
         else
             model.deleteFavorite(item.id)

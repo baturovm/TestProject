@@ -20,7 +20,7 @@ class MovieInfoPresenter : MvpPresenter<MovieInfoView>() {
 
     //Добавление или удаление из избранного
     fun changeFavorite(favorited: Boolean) {
-        movie?.favorited =favorited
+        movie!!.favorited = favorited
         if (favorited)
             model.addFavorite(movie!!)
         else

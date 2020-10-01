@@ -47,8 +47,8 @@ class MovieListFragment : BaseFragment(R.layout.fragment_movie_list), MovieListV
                 findNavController().navigate(R.id.movieInfoFragment, bundle)
             }
 
-            override fun onFavoriteClick(favorited: Boolean, item: Movie) {
-                presenter.changeFavorite(favorited, item)
+            override fun onFavoriteClick(item: Movie) {
+                presenter.changeFavorite(item)
             }
         })
     }
