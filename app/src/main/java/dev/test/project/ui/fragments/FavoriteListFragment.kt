@@ -45,8 +45,8 @@ class FavoriteListFragment: BaseFragment(R.layout.fragment_favorite_list), Favor
 
     //Задаем и показываем список фильмов
     override fun showMovies(movies: List<Movie>) {
-        showEmptyList(false)
-        showLoading(false)
+        progress_bar_favorite_list.setVisibility(false)
+        empty_favorite_list.setVisibility(false)
         rv_favorite_list.setVisibility(true)
         adapter.setData(movies.toMutableList())
         getMovieResultChanges()
@@ -61,17 +61,15 @@ class FavoriteListFragment: BaseFragment(R.layout.fragment_favorite_list), Favor
     }
 
     //Показываем загрузку
-    override fun showLoading(value: Boolean) {
-        progress_bar_favorite_list.setVisibility(value)
+    override fun showLoading() {
+        progress_bar_favorite_list.setVisibility(true)
     }
 
     //Показываем пустой список
-    override fun showEmptyList(value: Boolean) {
-        if(value) {
-            showLoading(false)
-            rv_favorite_list.setVisibility(false)
-        }
-        empty_favorite_list.setVisibility(value)
+    override fun showEmptyList() {
+        progress_bar_favorite_list.setVisibility(false)
+        rv_favorite_list.setVisibility(false)
+        empty_favorite_list.setVisibility(true)
     }
 
     //Настройка RecyclerView

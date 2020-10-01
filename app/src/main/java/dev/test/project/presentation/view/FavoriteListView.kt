@@ -10,7 +10,7 @@ interface FavoriteListView: MvpView {
     @AddToEnd
     fun showMovies(movies: List<Movie>)
     @SingleState
-    fun showLoading(value: Boolean)
+    fun showLoading()
     @AddToEnd
-    fun showEmptyList(value: Boolean)
+    fun showEmptyList()
 }

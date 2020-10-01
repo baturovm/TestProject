@@ -38,7 +38,7 @@ class MovieListPresenter : MvpPresenter<MovieListView>() {
 
     //Запрос данных
     fun fetchMovies() {
-        viewState.showLoading(true)
+        viewState.showLoading()
         model.fetchMovies(object : Callback<MoviesObject> {
             override fun onResponse(call: Call<MoviesObject>, response: Response<MoviesObject>) {
                 if(response.isSuccessful) {

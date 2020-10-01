@@ -55,7 +55,7 @@ class MovieListFragment : BaseFragment(R.layout.fragment_movie_list), MovieListV
 
     //Заполнение данных
     override fun initView(list: MutableList<Any>) {
-        showLoading(false)
+        progress_bar_movie_list.setVisibility(false)
         rv_movie_list.setVisibility(true)
         adapter.setData(list)
         adapter.setCheckedItem(presenter.checkedGenre)
@@ -76,25 +76,23 @@ class MovieListFragment : BaseFragment(R.layout.fragment_movie_list), MovieListV
     }
 
     //Показываем ошибку
-    override fun showError(error: String?) {
-        if (error!=null) {
-            showLoading(false)
-            val snack = Snackbar.make(
-                root_movie_list,
-                getString(R.string.error_internet),
-                Snackbar.LENGTH_INDEFINITE
-            )
-            snack.setActionTextColor(ContextCompat.getColor(requireContext(), R.color.snackColor))
-            snack.setAction(getString(R.string.try_again)) {
-                presenter.fetchMovies()
-            }
-            snack.show()
+    override fun showError(error: String) {
+        progress_bar_movie_list.setVisibility(false)
+        val snack = Snackbar.make(
+            root_movie_list,
+            getString(R.string.error_internet),
+            Snackbar.LENGTH_INDEFINITE
+        )
+        snack.setActionTextColor(ContextCompat.getColor(requireContext(), R.color.snackColor))
+        snack.setAction(getString(R.string.try_again)) {
+            presenter.fetchMovies()
         }
+        snack.show()
     }
 
     //Показываем загрузку
-    override fun showLoading(value: Boolean) {
-        progress_bar_movie_list.setVisibility(value)
+    override fun showLoading() {
+        progress_bar_movie_list.setVisibility(true)
     }
 
     //Настройка RecyclerView

@@ -13,7 +13,7 @@ interface MovieListView: MvpView {
     @AddToEnd
     fun showMovies(movies: List<Movie>)
     @AddToEnd
-    fun showError(error: String?)
+    fun showError(error: String)
     @SingleState
-    fun showLoading(value: Boolean)
+    fun showLoading()
 }

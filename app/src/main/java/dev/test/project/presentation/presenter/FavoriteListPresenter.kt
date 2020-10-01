@@ -21,7 +21,7 @@ class FavoriteListPresenter: MvpPresenter<FavoriteListView>() {
     private fun getFavoriteList() {
         val list = model.getFavoriteList()
         when {
-            list.isEmpty() -> viewState.showEmptyList(true)
+            list.isEmpty() -> viewState.showEmptyList()
             else -> viewState.showMovies(list)
         }
     }
