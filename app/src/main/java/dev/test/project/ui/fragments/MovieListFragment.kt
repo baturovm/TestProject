@@ -41,10 +41,7 @@ class MovieListFragment : BaseFragment(R.layout.fragment_movie_list), MovieListV
             }
 
             override fun onMovieClick(item: Movie) {
-                val bundle = Bundle().apply {
-                    putParcelable(MOVIE_BUNDLE_KEY, item)
-                }
-                findNavController().navigate(R.id.movieInfoFragment, bundle)
+                openMovieInfo(item)
             }
 
             override fun onFavoriteClick(item: Movie) {
@@ -114,5 +111,13 @@ class MovieListFragment : BaseFragment(R.layout.fragment_movie_list), MovieListV
             }
         }
         rv_movie_list.layoutManager = layoutManager
+    }
+
+    //Открытие информации о фильме
+    private fun openMovieInfo(item: Movie) {
+        val bundle = Bundle().apply {
+            putParcelable(MOVIE_BUNDLE_KEY, item)
+        }
+        findNavController().navigate(R.id.movieInfoFragment, bundle)
     }
 }

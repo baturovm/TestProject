@@ -28,10 +28,7 @@ class FavoriteListFragment: BaseFragment(R.layout.fragment_favorite_list), Favor
         setupRecyclerView()
         adapter.setOnItemClickListener(object : OnMovieClickListener {
             override fun onMovieClick(item: Movie) {
-                val bundle = Bundle().apply {
-                    putParcelable(MOVIE_BUNDLE_KEY, item)
-                }
-                findNavController().navigate(R.id.movieInfoFragment, bundle)
+                openMovieInfo(item)
             }
 
             override fun onFavoriteClick(item: Movie) {
@@ -82,5 +79,13 @@ class FavoriteListFragment: BaseFragment(R.layout.fragment_favorite_list), Favor
     private fun setupLayoutManager() {
         layoutManager = GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
         rv_favorite_list.layoutManager = layoutManager
+    }
+
+    //Открытие информации о фильме
+    private fun openMovieInfo(item: Movie) {
+        val bundle = Bundle().apply {
+            putParcelable(MOVIE_BUNDLE_KEY, item)
+        }
+        findNavController().navigate(R.id.movieInfoFragment, bundle)
     }
 }
