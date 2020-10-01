@@ -17,9 +17,11 @@ class MainActivity : MvpAppCompatActivity() {
         setContentView(R.layout.activity_main)
         navController = findNavController(R.id.nav_host_fragment)
         nav_view_main.setupWithNavController(navController)
+        setSupportActionBar(toolbar_main)
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        supportActionBar?.title = null
         toolbar_main.setNavigationOnClickListener {
             navController.popBackStack()
         }
     }
-
 }

@@ -2,7 +2,7 @@ package dev.test.project.abstracts
 
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
-import dev.test.project.R
+import androidx.appcompat.app.AppCompatActivity
 import dev.test.project.utils.setVisibility
 import kotlinx.android.synthetic.main.activity_main.*
 import moxy.MvpAppCompatFragment
@@ -10,10 +10,7 @@ import moxy.MvpAppCompatFragment
 abstract class BaseFragment(@LayoutRes layoutId: Int): MvpAppCompatFragment(layoutId) {
 
     fun showBackIcon(value: Boolean) {
-        when(value) {
-            true -> requireActivity().toolbar_main.setNavigationIcon(R.drawable.back_arrow)
-            false -> requireActivity().toolbar_main.navigationIcon = null
-        }
+        (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(value)
     }
 
     fun showBottomNavigation(value: Boolean) {
