@@ -28,8 +28,8 @@ abstract class BaseFragment(@LayoutRes layoutId: Int): MvpAppCompatFragment(layo
         requireActivity().toolbar_title.text = title
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroy() {
+        super.onDestroy()
         showBackIcon(false)
         showBottomNavigation(true)
     }
