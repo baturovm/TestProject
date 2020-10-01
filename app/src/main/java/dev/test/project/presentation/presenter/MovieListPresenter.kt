@@ -12,6 +12,7 @@ import moxy.MvpPresenter
 import moxy.presenterScope
 import retrofit2.Call
 import retrofit2.Callback
+import retrofit2.HttpException
 import retrofit2.Response
 
 /**
@@ -45,13 +46,17 @@ class MovieListPresenter : MvpPresenter<MovieListView>() {
                     moviesObject = response.body()
                     mapData()
                 } else {
-                    viewState.showError(ResourceUtils.getString(R.string.bad_code))
+                    viewState.showError(ResourceUtils.getErrorString(response.code()))
                 }
             }
 
             override fun onFailure(call: Call<MoviesObject>, t: Throwable) {
                 moviesObject = null
-                viewState.showError(ResourceUtils.getString(R.string.error_internet))
+                val error = when(t) {
+                    is HttpException -> ResourceUtils.getString(R.string.bad_code)
+                    else -> ResourceUtils.getString(R.string.error_internet)
+                }
+                viewState.showError(error)
             }
         })
     }

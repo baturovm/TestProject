@@ -3,7 +3,7 @@
     <string name="title_movie_list">Фильмы</string>
     <string name="empty_text">Пока нет фильмов</string>
     <string name="try_again">Повторить</string>
-    <string name="error_internet">Ошибка подключения сети</string>
+    <string name="error_internet">Ошибка подключения к сети</string>
     <string name="year">год</string>
     <string name="kinopoisk">КиноПоиск</string>
     <string name="genres">Жанры</string>
@@ -12,4 +12,8 @@
     <string name="favorite">Избранное</string>
     <string name="go_to_movies">Перейти к фильмам</string>
     <string name="bad_code">Сервер вернул неправильный код!</string>
+    <string name="bad_request">Неверный запрос</string>
+    <string name="client_error">Ошибка клиента</string>
+    <string name="server_error">Ошибка сервера</string>
+    <string name="unknown_error">Неизвестная ошибка</string>
 </resources>
