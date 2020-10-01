@@ -10,7 +10,6 @@ import dev.test.project.adapters.holders.TitleViewHolder
 import dev.test.project.interfaces.OnMoviesClickListener
 import dev.test.project.items.Genre
 import dev.test.project.items.Movie
-import dev.test.project.utils.ResourceUtils
 
 class MovieListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -22,8 +21,7 @@ class MovieListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items: MutableList<Any> = mutableListOf()
     private lateinit var clickListener: OnMoviesClickListener
-    private val moviesString = ResourceUtils.getString(R.string.movies)
-    var checkedGenre: Genre? = null
+    private var checkedGenre: Genre? = null
 
     fun setData(list: MutableList<Any>) {
         items = list
@@ -31,7 +29,7 @@ class MovieListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     fun setMovies(movies: List<Movie>) {
-        val startPos = items.indexOf(moviesString) + 1
+        val startPos = getFirstMoviePosition()
         items = items.take(startPos).toMutableList()
         items.addAll(startPos, movies)
         notifyDataSetChanged()
@@ -59,6 +57,17 @@ class MovieListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             checkedGenre = null
             notifyItemChanged(position)
         }
+    }
+
+    private fun getFirstMoviePosition(): Int {
+        var position: Int? = null
+        items.forEachIndexed { i: Int, any: Any ->
+            if (any is Movie) {
+                if(position == null) position = i
+                return@forEachIndexed
+            }
+        }
+        return position!!
     }
 
     fun movieFavorited(item: Movie) {
