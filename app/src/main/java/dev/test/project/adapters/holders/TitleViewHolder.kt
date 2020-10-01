@@ -2,10 +2,12 @@ package dev.test.project.adapters.holders
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_title.view.*
+import kotlinx.android.extensions.LayoutContainer
+import kotlinx.android.synthetic.main.item_title.*
 
-class TitleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class TitleViewHolder(override val containerView: View) :
+    RecyclerView.ViewHolder(containerView), LayoutContainer {
     fun bind(title: String) {
-        itemView.text_title_item.text = title
+        text_title_item.text = title
     }
 }
