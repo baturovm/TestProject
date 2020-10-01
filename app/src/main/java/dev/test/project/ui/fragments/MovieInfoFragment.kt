@@ -25,12 +25,12 @@ class MovieInfoFragment : BaseFragment(R.layout.fragment_movie_info), MovieInfoV
         arguments?.let {
             presenter.movie = it.getParcelable(MOVIE_BUNDLE_KEY)
         }
-        showBottomNavigation(false)
-        showBackIcon(true)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        showBottomNavigation(false)
+        showBackIcon(true)
         favorite_btn_movie_info.setOnClickListener {
             presenter.changeFavorite(it.toggleActive())
         }
