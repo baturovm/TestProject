@@ -8,7 +8,6 @@ import dev.test.project.adapters.holders.MoviesViewHolder
 import dev.test.project.interfaces.OnMovieClickListener
 import dev.test.project.items.Movie
 
-
 /**
  * Адаптер для списка избранных
  */

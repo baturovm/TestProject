@@ -11,6 +11,9 @@ import dev.test.project.interfaces.OnMoviesClickListener
 import dev.test.project.items.Genre
 import dev.test.project.items.Movie
 
+/**
+ * Адаптер для списка фильмов и жанров
+ */
 class MovieListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
