@@ -1,7 +1,7 @@
 package dev.test.project.model
 
 import dev.test.project.data.DataHelper
-import dev.test.project.data.DatabaseHelper
+import dev.test.project.data.DatabaseManager
 import dev.test.project.items.Movie
 import dev.test.project.items.MoviesObject
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +13,7 @@ import retrofit2.Callback
  */
 class MovieListModel {
 
-    private val database: DatabaseHelper = DatabaseHelper()
+    private val database: DatabaseManager = DatabaseManager()
     private val dataHelper: DataHelper = DataHelper(database)
 
     //Отмена соединения и закрытие db

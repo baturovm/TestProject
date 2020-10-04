@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 /**
  * Получение данных из сети и контроль соединения
  */
-class RetrofitHelper {
+class RetrofitManager {
 
     private val url = "https://s3-eu-west-1.amazonaws.com/"
     private var retrofit = Retrofit.Builder()

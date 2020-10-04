@@ -1,6 +1,6 @@
 package dev.test.project.model
 
-import dev.test.project.data.DatabaseHelper
+import dev.test.project.data.DatabaseManager
 import dev.test.project.items.Movie
 
 /**
@@ -8,7 +8,7 @@ import dev.test.project.items.Movie
  */
 class FavoriteListModel {
 
-    private val database = DatabaseHelper()
+    private val database = DatabaseManager()
 
     //Получение списка избранного
     fun getFavoriteList(): List<Movie> {

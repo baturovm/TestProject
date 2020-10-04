@@ -14,9 +14,9 @@ import retrofit2.Callback
  * - Получение отсортированного списка фильмов и жанров
  * - Фильтр фильмов по жанру
  */
-class DataHelper(private val database: DatabaseHelper) {
+class DataHelper(private val database: DatabaseManager) {
 
-    private val retrofitHelper = RetrofitHelper()
+    private val retrofitHelper = RetrofitManager()
 
     //Отмена соединения
     fun cancel() {

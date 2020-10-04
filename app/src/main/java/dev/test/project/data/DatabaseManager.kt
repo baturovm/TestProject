@@ -6,11 +6,8 @@ import io.realm.kotlin.deleteFromRealm
 
 /**
  * Работа с базой данных
- * - Добавление в БД
- * - Удаление из БД
- * - Получение списка из БД
  */
-class DatabaseHelper {
+class DatabaseManager {
 
     /**
      * Запись в БД
