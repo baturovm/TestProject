@@ -3,6 +3,7 @@ package dev.test.project.ui.fragments
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
@@ -24,6 +25,9 @@ import dev.test.project.utils.setVisibility
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 import moxy.ktx.moxyPresenter
 
+/**
+ * Адаптер для списка фильмов и жанров
+ */
 class MovieListFragment : BaseFragment(R.layout.fragment_movie_list), MovieListView {
 
     private val adapter = MovieListAdapter()
@@ -115,9 +119,9 @@ class MovieListFragment : BaseFragment(R.layout.fragment_movie_list), MovieListV
 
     //Открытие информации о фильме
     private fun openMovieInfo(item: Movie) {
-        val bundle = Bundle().apply {
-            putParcelable(MOVIE_BUNDLE_KEY, item)
-        }
+        val bundle = bundleOf(
+            MOVIE_BUNDLE_KEY to item
+        )
         findNavController().navigate(R.id.movieInfoFragment, bundle)
     }
 }

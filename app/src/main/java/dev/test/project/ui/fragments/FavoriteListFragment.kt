@@ -2,6 +2,7 @@ package dev.test.project.ui.fragments
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import dev.test.project.R
@@ -83,9 +84,9 @@ class FavoriteListFragment: BaseFragment(R.layout.fragment_favorite_list), Favor
 
     //Открытие информации о фильме
     private fun openMovieInfo(item: Movie) {
-        val bundle = Bundle().apply {
-            putParcelable(MOVIE_BUNDLE_KEY, item)
-        }
+        val bundle = bundleOf(
+            MOVIE_BUNDLE_KEY to item
+        )
         findNavController().navigate(R.id.movieInfoFragment, bundle)
     }
 }
