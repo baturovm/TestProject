@@ -7,7 +7,8 @@ import dev.test.project.R
 import dev.test.project.adapters.holders.GenresViewHolder
 import dev.test.project.adapters.holders.MoviesViewHolder
 import dev.test.project.adapters.holders.TitleViewHolder
-import dev.test.project.interfaces.OnMoviesClickListener
+import dev.test.project.interfaces.GenreListener
+import dev.test.project.interfaces.MovieListener
 import dev.test.project.items.Genre
 import dev.test.project.items.Movie
 
@@ -23,7 +24,8 @@ class MovieListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     private var items: MutableList<Any> = mutableListOf()
-    private lateinit var clickListener: OnMoviesClickListener
+    private lateinit var genreListener: GenreListener
+    private lateinit var movieListener: MovieListener
     private var checkedGenre: Genre? = null
 
     fun setData(list: MutableList<Any>) {
@@ -83,8 +85,12 @@ class MovieListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    fun setOnItemClickListener(clickListener: OnMoviesClickListener) {
-        this.clickListener = clickListener
+    fun setOnMovieClickListener(listener: MovieListener) {
+        this.movieListener = listener
+    }
+
+    fun setOnGenreClickListener(listener: GenreListener) {
+        this.genreListener = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -93,10 +99,10 @@ class MovieListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             TITLE_TYPE -> TitleViewHolder(
                 inflater.inflate(R.layout.item_title, parent, false)
             )
-            MOVIES_TYPE -> MoviesViewHolder(clickListener,
+            MOVIES_TYPE -> MoviesViewHolder(movieListener,
                 inflater.inflate(R.layout.item_movie, parent, false)
             )
-            else -> GenresViewHolder(clickListener,
+            else -> GenresViewHolder(genreListener,
                 inflater.inflate(R.layout.item_genres, parent, false)
             )
         }

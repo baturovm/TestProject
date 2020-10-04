@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import dev.test.project.R
 import dev.test.project.adapters.holders.MoviesViewHolder
-import dev.test.project.interfaces.OnMovieClickListener
+import dev.test.project.interfaces.MovieListener
 import dev.test.project.items.Movie
 
 /**
@@ -14,7 +14,7 @@ import dev.test.project.items.Movie
 class FavoriteListAdapter : RecyclerView.Adapter<MoviesViewHolder>() {
 
     private var items: MutableList<Movie> = mutableListOf()
-    private lateinit var clickListener: OnMovieClickListener
+    private lateinit var movieListener: MovieListener
 
     fun setData(list: MutableList<Movie>) {
         items = list
@@ -29,12 +29,12 @@ class FavoriteListAdapter : RecyclerView.Adapter<MoviesViewHolder>() {
         }
     }
 
-    fun setOnItemClickListener(clickListener: OnMovieClickListener) {
-        this.clickListener = clickListener
+    fun setOnMovieClickListener(listener: MovieListener) {
+        this.movieListener = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
-        return MoviesViewHolder(clickListener,
+        return MoviesViewHolder(movieListener,
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_movie, parent, false))
     }

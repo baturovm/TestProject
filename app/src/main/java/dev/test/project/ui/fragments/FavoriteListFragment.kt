@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import dev.test.project.R
 import dev.test.project.abstracts.BaseFragment
 import dev.test.project.adapters.FavoriteListAdapter
-import dev.test.project.interfaces.OnMovieClickListener
+import dev.test.project.interfaces.MovieListener
 import dev.test.project.items.Movie
 import dev.test.project.presentation.presenter.FavoriteListPresenter
 import dev.test.project.presentation.view.FavoriteListView
@@ -30,7 +30,7 @@ class FavoriteListFragment: BaseFragment(R.layout.fragment_favorite_list), Favor
         super.onViewCreated(view, savedInstanceState)
         requireActivity().toolbar_title.text = getString(R.string.favorite)
         setupRecyclerView()
-        adapter.setOnItemClickListener(object : OnMovieClickListener {
+        adapter.setOnMovieClickListener(object : MovieListener {
             override fun onMovieClick(item: Movie) {
                 openMovieInfo(item)
             }

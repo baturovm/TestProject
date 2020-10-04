@@ -6,15 +6,16 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import dev.test.project.R
-import dev.test.project.interfaces.OnMovieClickListener
+import dev.test.project.interfaces.MovieListener
 import dev.test.project.items.Movie
 import dev.test.project.utils.pxFromDp
 import dev.test.project.utils.toggleActive
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_movie.*
 
-class MoviesViewHolder(private val clickListener: OnMovieClickListener,
-                       override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
+class MoviesViewHolder(private val listener: MovieListener,
+                       override val containerView: View)
+    : RecyclerView.ViewHolder(containerView), LayoutContainer {
     fun bind(item: Movie) {
         title_movie_item.text = item.titleRU
         favorite_btn_movie.isActivated = item.favorited
@@ -24,11 +25,11 @@ class MoviesViewHolder(private val clickListener: OnMovieClickListener,
             .error(R.drawable.placeholder_movie_list)
             .into(poster_movie_item)
         card_movie.setOnClickListener {
-            clickListener.onMovieClick(item)
+            listener.onMovieClick(item)
         }
         favorite_btn_movie.setOnClickListener {
             item.favorited = it.toggleActive()
-            clickListener.onFavoriteClick(item)
+            listener.onFavoriteClick(item)
         }
     }
 }

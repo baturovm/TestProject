@@ -1,3 +1,0 @@
-package dev.test.project.interfaces
-
-interface OnMoviesClickListener: OnMovieClickListener, OnGenreClickListener

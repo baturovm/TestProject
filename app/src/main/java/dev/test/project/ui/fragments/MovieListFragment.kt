@@ -13,7 +13,8 @@ import dev.test.project.adapters.MovieListAdapter
 import dev.test.project.adapters.MovieListAdapter.Companion.GENRES_TYPE
 import dev.test.project.adapters.MovieListAdapter.Companion.MOVIES_TYPE
 import dev.test.project.adapters.MovieListAdapter.Companion.TITLE_TYPE
-import dev.test.project.interfaces.OnMoviesClickListener
+import dev.test.project.interfaces.GenreListener
+import dev.test.project.interfaces.MovieListener
 import dev.test.project.items.Genre
 import dev.test.project.items.Movie
 import dev.test.project.presentation.presenter.MovieListPresenter
@@ -38,12 +39,13 @@ class MovieListFragment : BaseFragment(R.layout.fragment_movie_list), MovieListV
         super.onViewCreated(view, savedInstanceState)
         setTitleToolbar(getString(R.string.movies))
         setupRecyclerView()
-        adapter.setOnItemClickListener(object : OnMoviesClickListener {
+        adapter.setOnGenreClickListener(object : GenreListener {
             override fun onGenreClick(item: Genre) {
                 presenter.filterData(item)
                 adapter.setCheckedItem(item)
             }
-
+        })
+        adapter.setOnMovieClickListener(object : MovieListener {
             override fun onMovieClick(item: Movie) {
                 openMovieInfo(item)
             }
