@@ -18,14 +18,12 @@ class DataHelper(private val database: DatabaseManager) {
 
     private val retrofitHelper = RetrofitManager()
 
-    //Отмена соединения
     fun cancel() {
-        retrofitHelper.cancel()
+        retrofitHelper.cancel()     //Отмена соединения
     }
 
-    //Запрос данных
     fun getMovies(callback: Callback<MoviesObject>) {
-        retrofitHelper.fetchMovies(callback)
+        retrofitHelper.fetchMovies(callback)     //Запрос данных
     }
 
     /**
