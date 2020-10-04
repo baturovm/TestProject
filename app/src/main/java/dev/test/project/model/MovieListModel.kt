@@ -16,14 +16,12 @@ class MovieListModel {
     private val database: DatabaseManager = DatabaseManager()
     private val dataManager: DataManager = DataManager(database)
 
-
     /**
      * Отмена соединения и закрытие db
      */
     fun cancelAll() {
         dataManager.cancel()
     }
-
 
     /**
      * Запрос данных
@@ -33,7 +31,9 @@ class MovieListModel {
     }
 
     /**
-     * Подготовка данных
+     * Подготовка данных:
+     * - Сортировка фильмов
+     * - Формирование списка жанров
      */
     suspend fun mapData(data: MoviesObject): MutableList<Any> = withContext(Dispatchers.Main){
         return@withContext dataManager.mapData(data)

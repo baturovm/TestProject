@@ -29,7 +29,7 @@ class FavoriteListPresenter: MvpPresenter<FavoriteListView>() {
     }
 
     /**
-     * Добавление или удаление из избранного
+     * Изменения статуса избранного фильма
      */
     fun changeFavorite(item: Movie) {
         if (item.favorited)

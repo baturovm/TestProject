@@ -19,7 +19,7 @@ class MovieInfoPresenter : MvpPresenter<MovieInfoView>() {
     }
 
     /**
-     * Добавление или удаление из избранного
+     * Изменения статуса избранного фильма
      */
     fun changeFavorite(favorited: Boolean) {
         movie!!.favorited = favorited
