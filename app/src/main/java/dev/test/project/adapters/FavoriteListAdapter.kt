@@ -8,6 +8,10 @@ import dev.test.project.adapters.holders.MoviesViewHolder
 import dev.test.project.interfaces.OnMovieClickListener
 import dev.test.project.items.Movie
 
+
+/**
+ * Адаптер для списка избранных
+ */
 class FavoriteListAdapter : RecyclerView.Adapter<MoviesViewHolder>() {
 
     private var items: MutableList<Movie> = mutableListOf()

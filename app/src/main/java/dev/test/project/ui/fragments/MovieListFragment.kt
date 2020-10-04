@@ -25,9 +25,6 @@ import dev.test.project.utils.setVisibility
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 import moxy.ktx.moxyPresenter
 
-/**
- * Адаптер для списка фильмов и жанров
- */
 class MovieListFragment : BaseFragment(R.layout.fragment_movie_list), MovieListView {
 
     private val adapter = MovieListAdapter()

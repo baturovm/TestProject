@@ -9,7 +9,8 @@ import kotlinx.android.synthetic.main.item_genres.*
 import java.util.*
 
 class GenresViewHolder(private val clickListener: OnMoviesClickListener,
-                       override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
+                       override val containerView: View)
+    : RecyclerView.ViewHolder(containerView), LayoutContainer {
     fun bind(item: Genre, checkedGenre: Genre?) {
         card_genre.isChecked = checkedGenre == item
         text_genre_item.text = item.genre.capitalize(Locale.ROOT)
