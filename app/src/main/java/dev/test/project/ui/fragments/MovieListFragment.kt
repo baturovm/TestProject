@@ -78,7 +78,7 @@ class MovieListFragment : BaseFragment(R.layout.fragment_movie_list), MovieListV
         progress_bar_movie_list.setVisibility(false)
         val snack = Snackbar.make(
             root_movie_list,
-            getString(R.string.error_internet),
+            error,
             Snackbar.LENGTH_INDEFINITE
         )
         snack.setActionTextColor(ContextCompat.getColor(requireContext(), R.color.snackColor))
