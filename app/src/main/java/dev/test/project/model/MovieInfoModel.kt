@@ -10,12 +10,16 @@ class MovieInfoModel {
 
     private val database: DatabaseManager = DatabaseManager()
 
-    //Добавить в избранное
+    /**
+     * Добавить в избранное
+     */
     fun addFavorite(item: Movie) {
         database.addItem(item)
     }
 
-    //Удалить из избранного
+    /**
+     * Удалить из избранного
+     */
     fun deleteFavorite(item: Movie) {
         database.deleteItem(item.id)
     }

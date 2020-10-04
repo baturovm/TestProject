@@ -17,7 +17,9 @@ class FavoriteListPresenter: MvpPresenter<FavoriteListView>() {
         getFavoriteList()
     }
 
-    //Получения списка избранных
+    /**
+     * Получения списка избранных
+     */
     private fun getFavoriteList() {
         val list = model.getFavoriteList()
         when {
@@ -26,7 +28,9 @@ class FavoriteListPresenter: MvpPresenter<FavoriteListView>() {
         }
     }
 
-    //Добавление или удаление из избранного
+    /**
+     * Добавление или удаление из избранного
+     */
     fun changeFavorite(item: Movie) {
         if (item.favorited)
             model.addFavorite(item)

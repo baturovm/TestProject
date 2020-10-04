@@ -10,17 +10,23 @@ class FavoriteListModel {
 
     private val database = DatabaseManager()
 
-    //Получение списка избранного
+    /**
+     * Получение списка избранного
+     */
     fun getFavoriteList(): List<Movie> {
         return database.getItems()
     }
 
-    //Добавить в избранное
+    /**
+     * Добавить в избранное
+     */
     fun addFavorite(item: Movie) {
         database.addItem(item)
     }
 
-    //Удалить из избранного
+    /**
+     * Удалить из избранного
+     */
     fun deleteFavorite(item: Movie) {
         database.deleteItem(item.id)
     }

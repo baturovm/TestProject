@@ -31,13 +31,17 @@ class MovieListPresenter : MvpPresenter<MovieListView>() {
         fetchMovies()
     }
 
-    //Отмена соединения
+    /**
+     * Отмена соединения
+     */
     override fun onDestroy() {
         super.onDestroy()
         model.cancelAll()
     }
 
-    //Запрос данных
+    /**
+     * Запрос данных
+     */
     fun fetchMovies() {
         viewState.showLoading()
         model.fetchMovies(object : Callback<MoviesObject> {
@@ -61,7 +65,9 @@ class MovieListPresenter : MvpPresenter<MovieListView>() {
         })
     }
 
-    //Подготовка данных
+    /**
+     * Подготовка данных
+     */
     fun mapData() {
         presenterScope.launch {
             moviesObject?.let {
@@ -71,7 +77,9 @@ class MovieListPresenter : MvpPresenter<MovieListView>() {
         }
     }
 
-    //Фильтр данных по жанру
+    /**
+     * Фильтр данных по жанру
+     */
     fun filterData(item: Genre) {
         if(checkedGenre == item) {
             checkedGenre = null
@@ -85,7 +93,9 @@ class MovieListPresenter : MvpPresenter<MovieListView>() {
         }
     }
 
-    //Добавление или удаление из избранного
+    /**
+     * Добавление или удаление из избранного
+     */
     fun changeFavorite(item: Movie) {
         if (item.favorited)
             model.addFavorite(item)

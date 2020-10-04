@@ -25,6 +25,9 @@ import dev.test.project.utils.setVisibility
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 import moxy.ktx.moxyPresenter
 
+/**
+ * Экран списка фильмов и жанров
+ */
 class MovieListFragment : BaseFragment(R.layout.fragment_movie_list), MovieListView {
 
     private val adapter = MovieListAdapter()
@@ -51,7 +54,6 @@ class MovieListFragment : BaseFragment(R.layout.fragment_movie_list), MovieListV
         })
     }
 
-    //Заполнение данных
     override fun initView(list: MutableList<Any>) {
         progress_bar_movie_list.setVisibility(false)
         rv_movie_list.setVisibility(true)
@@ -60,20 +62,10 @@ class MovieListFragment : BaseFragment(R.layout.fragment_movie_list), MovieListV
         getMovieResultChanges()
     }
 
-    //При наличии результата, показываем изменения
-    private fun getMovieResultChanges() {
-        val movie = getNavigationResult<Movie>(MOVIE_RESULT_KEY)
-        if (movie != null) {
-            adapter.movieFavorited(movie)
-        }
-    }
-
-    //Задаем список фильмов
     override fun showMovies(movies: List<Movie>) {
         adapter.setMovies(movies)
     }
 
-    //Показываем ошибку
     override fun showError(error: String) {
         progress_bar_movie_list.setVisibility(false)
         val snack = Snackbar.make(
@@ -88,18 +80,31 @@ class MovieListFragment : BaseFragment(R.layout.fragment_movie_list), MovieListV
         snack.show()
     }
 
-    //Показываем загрузку
     override fun showLoading() {
         progress_bar_movie_list.setVisibility(true)
     }
 
-    //Настройка RecyclerView
+    /**
+     * При наличии результата, показываем изменения
+     */
+    private fun getMovieResultChanges() {
+        val movie = getNavigationResult<Movie>(MOVIE_RESULT_KEY)
+        if (movie != null) {
+            adapter.movieFavorited(movie)
+        }
+    }
+
+    /**
+     * Настройка RecyclerView
+     */
     private fun setupRecyclerView() {
         rv_movie_list.adapter = adapter
         setupLayoutManager()
     }
 
-    //Настройка колонок и восстановление состояния списка
+    /**
+     * Настройка колонок и восстановление состояния списка
+     */
     private fun setupLayoutManager() {
         layoutManager = GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
         layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
@@ -114,7 +119,9 @@ class MovieListFragment : BaseFragment(R.layout.fragment_movie_list), MovieListV
         rv_movie_list.layoutManager = layoutManager
     }
 
-    //Открытие информации о фильме
+    /**
+     * Открытие информации о фильме
+     */
     private fun openMovieInfo(item: Movie) {
         val bundle = bundleOf(
             MOVIE_BUNDLE_KEY to item

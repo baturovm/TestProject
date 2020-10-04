@@ -16,6 +16,9 @@ import kotlinx.android.synthetic.main.fragment_movie_info.*
 import moxy.ktx.moxyPresenter
 import java.text.DecimalFormat
 
+/**
+ * Экрна информации о фильме
+ */
 class MovieInfoFragment : BaseFragment(R.layout.fragment_movie_info), MovieInfoView {
 
     private val presenter by moxyPresenter { MovieInfoPresenter() }
@@ -36,14 +39,12 @@ class MovieInfoFragment : BaseFragment(R.layout.fragment_movie_info), MovieInfoV
         }
     }
 
-    //Задаем результат работы фрагмента
     override fun onDetach() {
         super.onDetach()
-        setNavigationResult(MOVIE_RESULT_KEY, presenter.movie)
+        setNavigationResult(MOVIE_RESULT_KEY, presenter.movie)    //Задаем результат работы фрагмента
     }
 
-    //Показываем данные фильма
-    override fun initView() {
+    override fun showMovieInfo() {
         val movie = presenter.movie!!
         requireActivity().toolbar_title.text = movie.titleEN
         favorite_btn_movie_info.isActivated = movie.favorited

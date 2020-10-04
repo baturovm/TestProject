@@ -17,6 +17,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_favorite_list.*
 import moxy.ktx.moxyPresenter
 
+/**
+ * Экран списка избранных
+ */
 class FavoriteListFragment: BaseFragment(R.layout.fragment_favorite_list), FavoriteListView {
 
     private val adapter = FavoriteListAdapter()
@@ -41,7 +44,6 @@ class FavoriteListFragment: BaseFragment(R.layout.fragment_favorite_list), Favor
         }
     }
 
-    //Задаем и показываем список фильмов
     override fun showMovies(movies: List<Movie>) {
         progress_bar_favorite_list.setVisibility(false)
         empty_favorite_list.setVisibility(false)
@@ -50,7 +52,19 @@ class FavoriteListFragment: BaseFragment(R.layout.fragment_favorite_list), Favor
         getMovieResultChanges()
     }
 
-    //При наличии результата, показываем изменения
+    override fun showLoading() {
+        progress_bar_favorite_list.setVisibility(true)
+    }
+
+    override fun showEmptyList() {
+        progress_bar_favorite_list.setVisibility(false)
+        rv_favorite_list.setVisibility(false)
+        empty_favorite_list.setVisibility(true)
+    }
+
+    /**
+     * При наличии результата, показываем изменения
+     */
     private fun getMovieResultChanges() {
         val movie = getNavigationResult<Movie>(MOVIE_RESULT_KEY)
         if (movie != null) {
@@ -58,31 +72,25 @@ class FavoriteListFragment: BaseFragment(R.layout.fragment_favorite_list), Favor
         }
     }
 
-    //Показываем загрузку
-    override fun showLoading() {
-        progress_bar_favorite_list.setVisibility(true)
-    }
-
-    //Показываем пустой список
-    override fun showEmptyList() {
-        progress_bar_favorite_list.setVisibility(false)
-        rv_favorite_list.setVisibility(false)
-        empty_favorite_list.setVisibility(true)
-    }
-
-    //Настройка RecyclerView
+    /**
+     * Настройка RecyclerView
+     */
     private fun setupRecyclerView() {
         rv_favorite_list.adapter = adapter
         setupLayoutManager()
     }
 
-    //Настройка колонок и восстановление состояния списка
+    /**
+     * Настройка колонок и восстановление состояния списка
+     */
     private fun setupLayoutManager() {
         layoutManager = GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
         rv_favorite_list.layoutManager = layoutManager
     }
 
-    //Открытие информации о фильме
+    /**
+     * Открытие информации о фильме
+     */
     private fun openMovieInfo(item: Movie) {
         val bundle = bundleOf(
             MOVIE_BUNDLE_KEY to item

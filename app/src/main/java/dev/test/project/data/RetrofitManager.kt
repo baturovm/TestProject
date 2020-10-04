@@ -19,12 +19,16 @@ class RetrofitManager {
     private var apiService = retrofit.create(ApiService::class.java)
     private var call = apiService.getMovies()
 
-    //Отмена соединения
+    /**
+     * Отмена соединения
+     */
     fun cancel() {
         call.cancel()
     }
 
-    //Получение списка фильмов
+    /**
+     * Получение списка фильмов
+     */
     fun fetchMovies(callback: Callback<MoviesObject>) {
         if(call.isCanceled or call.isExecuted) {
             call = call.clone()

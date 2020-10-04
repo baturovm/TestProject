@@ -1,6 +1,6 @@
 package dev.test.project.model
 
-import dev.test.project.data.DataHelper
+import dev.test.project.data.DataManager
 import dev.test.project.data.DatabaseManager
 import dev.test.project.items.Movie
 import dev.test.project.items.MoviesObject
@@ -14,34 +14,48 @@ import retrofit2.Callback
 class MovieListModel {
 
     private val database: DatabaseManager = DatabaseManager()
-    private val dataHelper: DataHelper = DataHelper(database)
+    private val dataManager: DataManager = DataManager(database)
 
-    //Отмена соединения и закрытие db
+
+    /**
+     * Отмена соединения и закрытие db
+     */
     fun cancelAll() {
-        dataHelper.cancel()
+        dataManager.cancel()
     }
 
-    //Запрос данных
+
+    /**
+     * Запрос данных
+     */
     fun fetchMovies(callback: Callback<MoviesObject>) {
-        dataHelper.getMovies(callback)
+        dataManager.getMovies(callback)
     }
 
-    //Подготовка данных
+    /**
+     * Подготовка данных
+     */
     suspend fun mapData(data: MoviesObject): MutableList<Any> = withContext(Dispatchers.Main){
-        return@withContext dataHelper.mapData(data)
+        return@withContext dataManager.mapData(data)
     }
 
-    //Фильтр данных по жанру
+    /**
+     * Фильтр данных по жанру
+     */
     suspend fun filterData(genre: String, movies: List<Movie>): List<Movie> {
-        return dataHelper.filterData(genre, movies)
+        return dataManager.filterData(genre, movies)
     }
 
-    //Добавить в избранное
+    /**
+     * Добавить в избранное
+     */
     fun addFavorite(item: Movie) {
         database.addItem(item)
     }
 
-    //Удалить из избранного
+    /**
+     * Удалить из избранного
+     */
     fun deleteFavorite(id: Int) {
         database.deleteItem(id)
     }

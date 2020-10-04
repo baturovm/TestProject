@@ -15,10 +15,12 @@ class MovieInfoPresenter : MvpPresenter<MovieInfoView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        viewState.initView()
+        viewState.showMovieInfo()
     }
 
-    //Добавление или удаление из избранного
+    /**
+     * Добавление или удаление из избранного
+     */
     fun changeFavorite(favorited: Boolean) {
         movie!!.favorited = favorited
         if (favorited)
