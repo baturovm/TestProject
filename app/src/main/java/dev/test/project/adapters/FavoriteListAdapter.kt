@@ -29,7 +29,7 @@ class FavoriteListAdapter : RecyclerView.Adapter<MoviesViewHolder>() {
         }
     }
 
-    fun setOnMovieClickListener(listener: MovieListener) {
+    fun setMovieListener(listener: MovieListener) {
         this.movieListener = listener
     }
 

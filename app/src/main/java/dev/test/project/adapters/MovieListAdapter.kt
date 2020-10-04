@@ -85,11 +85,11 @@ class MovieListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    fun setOnMovieClickListener(listener: MovieListener) {
+    fun setMovieListener(listener: MovieListener) {
         this.movieListener = listener
     }
 
-    fun setOnGenreClickListener(listener: GenreListener) {
+    fun setGenreListener(listener: GenreListener) {
         this.genreListener = listener
     }
 

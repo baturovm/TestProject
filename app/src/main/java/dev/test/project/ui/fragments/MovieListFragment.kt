@@ -39,13 +39,13 @@ class MovieListFragment : BaseFragment(R.layout.fragment_movie_list), MovieListV
         super.onViewCreated(view, savedInstanceState)
         setTitleToolbar(getString(R.string.movies))
         setupRecyclerView()
-        adapter.setOnGenreClickListener(object : GenreListener {
+        adapter.setGenreListener(object : GenreListener {
             override fun onGenreClick(item: Genre) {
                 presenter.filterData(item)
                 adapter.setCheckedItem(item)
             }
         })
-        adapter.setOnMovieClickListener(object : MovieListener {
+        adapter.setMovieListener(object : MovieListener {
             override fun onMovieClick(item: Movie) {
                 openMovieInfo(item)
             }

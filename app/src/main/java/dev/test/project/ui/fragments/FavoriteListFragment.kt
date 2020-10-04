@@ -30,7 +30,7 @@ class FavoriteListFragment: BaseFragment(R.layout.fragment_favorite_list), Favor
         super.onViewCreated(view, savedInstanceState)
         requireActivity().toolbar_title.text = getString(R.string.favorite)
         setupRecyclerView()
-        adapter.setOnMovieClickListener(object : MovieListener {
+        adapter.setMovieListener(object : MovieListener {
             override fun onMovieClick(item: Movie) {
                 openMovieInfo(item)
             }
