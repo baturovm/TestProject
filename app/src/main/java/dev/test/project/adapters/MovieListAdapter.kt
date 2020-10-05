@@ -1,9 +1,7 @@
 package dev.test.project.adapters
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import dev.test.project.R
 import dev.test.project.adapters.holders.GenresViewHolder
 import dev.test.project.adapters.holders.MoviesViewHolder
 import dev.test.project.adapters.holders.TitleViewHolder
@@ -94,17 +92,10 @@ class MovieListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
         return when(viewType) {
-            TITLE_TYPE -> TitleViewHolder(
-                inflater.inflate(R.layout.item_title, parent, false)
-            )
-            MOVIES_TYPE -> MoviesViewHolder(movieListener,
-                inflater.inflate(R.layout.item_movie, parent, false)
-            )
-            else -> GenresViewHolder(genreListener,
-                inflater.inflate(R.layout.item_genres, parent, false)
-            )
+            TITLE_TYPE -> TitleViewHolder(parent)
+            MOVIES_TYPE -> MoviesViewHolder(movieListener, parent)
+            else -> GenresViewHolder(genreListener, parent)
         }
     }
 

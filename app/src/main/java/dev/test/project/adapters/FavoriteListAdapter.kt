@@ -1,9 +1,7 @@
 package dev.test.project.adapters
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import dev.test.project.R
 import dev.test.project.adapters.holders.MoviesViewHolder
 import dev.test.project.interfaces.MovieListener
 import dev.test.project.items.Movie
@@ -34,9 +32,7 @@ class FavoriteListAdapter : RecyclerView.Adapter<MoviesViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviesViewHolder {
-        return MoviesViewHolder(movieListener,
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_movie, parent, false))
+        return MoviesViewHolder(movieListener, parent)
     }
 
     override fun getItemCount(): Int = items.size

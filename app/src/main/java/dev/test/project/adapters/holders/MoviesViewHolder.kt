@@ -1,6 +1,8 @@
 package dev.test.project.adapters.holders
 
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
@@ -14,7 +16,9 @@ import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_movie.*
 
 class MoviesViewHolder(private val listener: MovieListener,
-                       override val containerView: View)
+                       private val parent: ViewGroup,
+                       override val containerView: View = LayoutInflater.from(parent.context)
+                           .inflate(R.layout.item_movie, parent, false))
     : RecyclerView.ViewHolder(containerView), LayoutContainer {
     fun bind(item: Movie) {
         title_movie_item.text = item.titleRU
