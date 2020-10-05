@@ -66,7 +66,7 @@ class MovieListPresenter : MvpPresenter<MovieListView>() {
     }
 
     /**
-     * Подготовка данных
+     * Обработка и подготовка данных
      */
     fun mapData() {
         presenterScope.launch {

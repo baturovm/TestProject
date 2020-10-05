@@ -17,7 +17,7 @@ class MovieListModel {
     private val dataManager: DataManager = DataManager(database)
 
     /**
-     * Отмена соединения и закрытие db
+     * Отмена соединения
      */
     fun cancelAll() {
         dataManager.cancel()
