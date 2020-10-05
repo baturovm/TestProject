@@ -15,12 +15,13 @@ import dev.test.project.utils.toggleActive
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_movie.*
 
-class MoviesViewHolder(private val listener: MovieListener,
-                       private val parent: ViewGroup,
-                       override val containerView: View = LayoutInflater.from(parent.context)
+class MoviesViewHolder(private val parent: ViewGroup,
+                       private val inflater: LayoutInflater,
+                       override val containerView: View = inflater
                            .inflate(R.layout.item_movie, parent, false))
     : RecyclerView.ViewHolder(containerView), LayoutContainer {
-    fun bind(item: Movie) {
+
+    fun bind(listener: MovieListener, item: Movie) {
         title_movie_item.text = item.titleRU
         favorite_btn_movie.isActivated = item.favorited
         Glide.with(poster_movie_item)

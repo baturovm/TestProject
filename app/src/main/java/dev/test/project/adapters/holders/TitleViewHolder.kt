@@ -9,7 +9,8 @@ import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_title.*
 
 class TitleViewHolder(private val parent: ViewGroup,
-                      override val containerView: View = LayoutInflater.from(parent.context)
+                      private val inflater: LayoutInflater,
+                      override val containerView: View = inflater
                           .inflate(R.layout.item_title, parent, false))
     : RecyclerView.ViewHolder(containerView), LayoutContainer {
     fun bind(title: String) {

@@ -1,5 +1,6 @@
 package dev.test.project.adapters
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import dev.test.project.adapters.holders.GenresViewHolder
@@ -92,10 +93,11 @@ class MovieListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
         return when(viewType) {
-            TITLE_TYPE -> TitleViewHolder(parent)
-            MOVIES_TYPE -> MoviesViewHolder(movieListener, parent)
-            else -> GenresViewHolder(genreListener, parent)
+            TITLE_TYPE -> TitleViewHolder(parent, inflater)
+            MOVIES_TYPE -> MoviesViewHolder(parent, inflater)
+            else -> GenresViewHolder(parent, inflater)
         }
     }
 
@@ -113,11 +115,11 @@ class MovieListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         when(getItemViewType(position)) {
             MOVIES_TYPE -> {
                 holder as MoviesViewHolder
-                holder.bind(items[position] as Movie)
+                holder.bind(movieListener, items[position] as Movie)
             }
             GENRES_TYPE -> {
                 holder as GenresViewHolder
-                holder.bind(items[position] as Genre, checkedGenre)
+                holder.bind(genreListener, items[position] as Genre, checkedGenre)
             }
             TITLE_TYPE -> {
                 holder as TitleViewHolder
