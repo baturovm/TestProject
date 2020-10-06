@@ -11,9 +11,9 @@
     <string name="null_rating">--</string>
     <string name="favorite">Избранное</string>
     <string name="go_to_movies">Перейти к фильмам</string>
-    <string name="bad_code">Сервер вернул неправильный код!</string>
-    <string name="bad_request">Неверный запрос</string>
-    <string name="client_error">Ошибка клиента</string>
     <string name="server_error">Ошибка сервера</string>
     <string name="unknown_error">Неизвестная ошибка</string>
+    <string name="error_data_processing">Ошибка обработки данных</string>
+    <string name="error_slow_connection">Медленное соединение</string>
+    <string name="error_unknown">Неопознанная ошибка</string>
 </resources>
