@@ -8,10 +8,9 @@ import moxy.MvpPresenter
 /**
  * Презентер для экрана информации по фильму
  */
-class MovieInfoPresenter : MvpPresenter<MovieInfoView>() {
+class MovieInfoPresenter(private val model: MovieInfoModel) : MvpPresenter<MovieInfoView>() {
 
     var movie: Movie? = null
-    private val model = MovieInfoModel()
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()

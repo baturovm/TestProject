@@ -13,11 +13,12 @@ import dev.test.project.adapters.MovieListAdapter
 import dev.test.project.adapters.MovieListAdapter.Companion.GENRES_TYPE
 import dev.test.project.adapters.MovieListAdapter.Companion.MOVIES_TYPE
 import dev.test.project.adapters.MovieListAdapter.Companion.TITLE_TYPE
-import dev.test.project.interfaces.GenreListener
-import dev.test.project.interfaces.MovieListener
+import dev.test.project.adapters.holders.listeners.GenreListener
+import dev.test.project.adapters.holders.listeners.MovieListener
 import dev.test.project.items.Genre
 import dev.test.project.items.Movie
 import dev.test.project.items.MoviesObject
+import dev.test.project.model.prod.MovieListModelProd
 import dev.test.project.presentation.presenter.MovieListPresenter
 import dev.test.project.presentation.view.MovieListView
 import dev.test.project.utils.*
@@ -31,7 +32,7 @@ class MovieListFragment : BaseFragment(R.layout.fragment_movie_list), MovieListV
 
     private val adapter = MovieListAdapter()
     private lateinit var layoutManager: GridLayoutManager
-    private val presenter by moxyPresenter { MovieListPresenter() }
+    private val presenter by moxyPresenter { MovieListPresenter(MovieListModelProd()) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

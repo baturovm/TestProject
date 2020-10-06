@@ -13,13 +13,11 @@ import moxy.presenterScope
 /**
  * Презентер для списка жанров и фильмов
  */
-class MovieListPresenter : MvpPresenter<MovieListView>() {
+class MovieListPresenter(private val model: MovieListModel) : MvpPresenter<MovieListView>() {
 
     var moviesObject: MoviesObject? = null
 
     var checkedGenre: Genre? = null
-
-    private val model = MovieListModel()
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()

@@ -8,9 +8,7 @@ import moxy.MvpPresenter
 /**
  * Презентер для списка избранного
  */
-class FavoriteListPresenter: MvpPresenter<FavoriteListView>() {
-
-    private val model = FavoriteListModel()
+class FavoriteListPresenter(private val model: FavoriteListModel) : MvpPresenter<FavoriteListView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()

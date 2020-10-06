@@ -9,6 +9,7 @@ import dev.test.project.abstracts.BaseFragment
 import dev.test.project.R
 import dev.test.project.presentation.view.MovieInfoView
 import dev.test.project.items.Movie
+import dev.test.project.model.prod.MovieInfoModelProd
 import dev.test.project.presentation.presenter.MovieInfoPresenter
 import dev.test.project.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -21,7 +22,7 @@ import java.text.DecimalFormat
  */
 class MovieInfoFragment : BaseFragment(R.layout.fragment_movie_info), MovieInfoView {
 
-    private val presenter by moxyPresenter { MovieInfoPresenter() }
+    private val presenter by moxyPresenter { MovieInfoPresenter(MovieInfoModelProd()) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

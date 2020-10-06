@@ -8,8 +8,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import dev.test.project.R
 import dev.test.project.abstracts.BaseFragment
 import dev.test.project.adapters.FavoriteListAdapter
-import dev.test.project.interfaces.MovieListener
+import dev.test.project.adapters.holders.listeners.MovieListener
 import dev.test.project.items.Movie
+import dev.test.project.model.prod.FavoriteListModelProd
 import dev.test.project.presentation.presenter.FavoriteListPresenter
 import dev.test.project.presentation.view.FavoriteListView
 import dev.test.project.utils.*
@@ -24,7 +25,7 @@ class FavoriteListFragment: BaseFragment(R.layout.fragment_favorite_list), Favor
 
     private val adapter = FavoriteListAdapter()
     private lateinit var layoutManager: GridLayoutManager
-    private val presenter by moxyPresenter { FavoriteListPresenter() }
+    private val presenter by moxyPresenter { FavoriteListPresenter(FavoriteListModelProd()) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
