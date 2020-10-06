@@ -1,29 +1,37 @@
 package dev.test.project.utils
 
 import androidx.annotation.StringRes
+import com.google.gson.JsonSyntaxException
 import dev.test.project.App
 import dev.test.project.R
+import java.net.ConnectException
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
 
 object ResourceUtils {
+
     fun getString(@StringRes resId: Int): String {
         return App.getContext().getString(resId)
     }
 
     /**
      * Получение сообщения ошибки
-     * @param code ответ сервера
      * @return сообщение ошибки
      */
-    fun getErrorString(code: Int): String {
-        return when (code) {
-            in 400..499 -> {
-                if(code==400) getString(R.string.bad_request)
-                else getString(R.string.client_error)
+    fun getErrorString(t: Throwable): String {
+        return when (t) {
+            is UnknownHostException, is ConnectException -> {
+                getString(R.string.error_internet)
             }
-            in 500..599 -> {
-                getString(R.string.server_error)
+            is SocketTimeoutException -> {
+                getString(R.string.error_slow_connection)
             }
-            else -> getString(R.string.unknown_error)
+            is JsonSyntaxException -> {
+                getString(R.string.error_data_processing)
+            }
+            else -> {
+                getString(R.string.error_unknown)
+            }
         }
     }
 }

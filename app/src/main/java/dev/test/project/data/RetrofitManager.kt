@@ -52,20 +52,7 @@ class RetrofitManager {
             }
 
             override fun onFailure(call: Call<MoviesObject>, t: Throwable) {
-                val error = when (t) {
-                    is UnknownHostException, is ConnectException -> {
-                        ResourceUtils.getString(R.string.error_internet)
-                    }
-                    is SocketTimeoutException -> {
-                        ResourceUtils.getString(R.string.error_slow_connection)
-                    }
-                    is JsonSyntaxException -> {
-                        ResourceUtils.getString(R.string.error_data_processing);
-                    }
-                    else -> {
-                        ResourceUtils.getString(R.string.error_unknown)
-                    }
-                }
+                val error = ResourceUtils.getErrorString(t)
                 callback.onError(error)
             }
         })
