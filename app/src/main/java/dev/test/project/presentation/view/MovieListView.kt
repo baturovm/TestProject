@@ -1,8 +1,8 @@
 package dev.test.project.presentation.view
 
 import dev.test.project.items.Movie
+import dev.test.project.items.MoviesObject
 import moxy.MvpView
-import moxy.viewstate.strategy.alias.AddToEnd
 import moxy.viewstate.strategy.alias.SingleState
 
 interface MovieListView: MvpView {
@@ -10,19 +10,19 @@ interface MovieListView: MvpView {
     /**
      * Показать список
      */
-    @AddToEnd
-    fun initView(list: MutableList<Any>)
+    @SingleState
+    fun showList(data: MoviesObject)
 
     /**
-     * Показать список фильмов
+     * Задать список фильмов
      */
-    @AddToEnd
-    fun showMovies(movies: List<Movie>)
+    @SingleState
+    fun setMoviesList(movies: List<Movie>)
 
     /**
      * Показать сообщение об ошибке
      */
-    @AddToEnd
+    @SingleState
     fun showError(error: String)
 
     /**
