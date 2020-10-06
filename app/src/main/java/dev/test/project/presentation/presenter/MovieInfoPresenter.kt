@@ -15,6 +15,7 @@ class MovieInfoPresenter : MvpPresenter<MovieInfoView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
+        viewState.setMovie()
         viewState.showMovieInfo()
     }
 

@@ -23,13 +23,6 @@ class MovieInfoFragment : BaseFragment(R.layout.fragment_movie_info), MovieInfoV
 
     private val presenter by moxyPresenter { MovieInfoPresenter() }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            presenter.movie = it.getParcelable(MOVIE_BUNDLE_KEY)
-        }
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showBottomNavigation(false)
@@ -57,6 +50,10 @@ class MovieInfoFragment : BaseFragment(R.layout.fragment_movie_info), MovieInfoV
         infoText_movie_info.text = getInfoText(movie)
         rating_movie_info.text = getRating(movie.rating)
         desc_movie_info.text = movie.description
+    }
+
+    override fun setMovie() {
+        presenter.movie = arguments?.getParcelable(MOVIE_BUNDLE_KEY)
     }
 
     private fun getInfoText(movie: Movie) = if(movie.genres.isNullOrEmpty()) {
