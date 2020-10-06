@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import dev.test.project.R
-import dev.test.project.interfaces.MovieListener
+import dev.test.project.adapters.holders.listeners.MovieListener
 import dev.test.project.items.Movie
 import dev.test.project.utils.pxFromDp
 import dev.test.project.utils.toggleActive

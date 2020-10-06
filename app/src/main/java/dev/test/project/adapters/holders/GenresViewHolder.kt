@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import dev.test.project.R
-import dev.test.project.interfaces.GenreListener
+import dev.test.project.adapters.holders.listeners.GenreListener
 import dev.test.project.items.Genre
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_genres.*

@@ -1,11 +1,10 @@
 package dev.test.project.adapters
 
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import dev.test.project.adapters.holders.MoviesViewHolder
-import dev.test.project.interfaces.MovieListener
+import dev.test.project.adapters.holders.listeners.MovieListener
 import dev.test.project.items.Movie
 
 /**

@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import dev.test.project.adapters.holders.GenresViewHolder
 import dev.test.project.adapters.holders.MoviesViewHolder
 import dev.test.project.adapters.holders.TitleViewHolder
-import dev.test.project.interfaces.GenreListener
-import dev.test.project.interfaces.MovieListener
+import dev.test.project.adapters.holders.listeners.GenreListener
+import dev.test.project.adapters.holders.listeners.MovieListener
 import dev.test.project.items.Genre
 import dev.test.project.items.Movie
 
