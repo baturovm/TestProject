@@ -1,19 +1,14 @@
 package dev.test.project.presentation.presenter
 
-import dev.test.project.R
+import dev.test.project.interfaces.RetrofitCallback
 import dev.test.project.items.Genre
 import dev.test.project.presentation.view.MovieListView
 import dev.test.project.items.Movie
 import dev.test.project.items.MoviesObject
 import dev.test.project.model.MovieListModel
-import dev.test.project.utils.ResourceUtils
 import kotlinx.coroutines.launch
 import moxy.MvpPresenter
 import moxy.presenterScope
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.HttpException
-import retrofit2.Response
 
 /**
  * Презентер для списка жанров и фильмов
@@ -44,37 +39,16 @@ class MovieListPresenter : MvpPresenter<MovieListView>() {
      */
     fun fetchMovies() {
         viewState.showLoading()
-        model.fetchMovies(object : Callback<MoviesObject> {
-            override fun onResponse(call: Call<MoviesObject>, response: Response<MoviesObject>) {
-                if(response.isSuccessful) {
-                    moviesObject = response.body()
-                    mapData()
-                } else {
-                    viewState.showError(ResourceUtils.getErrorString(response.code()))
-                }
-            }
-
-            override fun onFailure(call: Call<MoviesObject>, t: Throwable) {
-                moviesObject = null
-                val error = when(t) {
-                    is HttpException -> ResourceUtils.getString(R.string.bad_code)
-                    else -> ResourceUtils.getString(R.string.error_internet)
-                }
+        model.fetchMovies(object : RetrofitCallback<MoviesObject> {
+            override fun onError(error: String) {
                 viewState.showError(error)
             }
-        })
-    }
 
-    /**
-     * Обработка и подготовка данных
-     */
-    fun mapData() {
-        presenterScope.launch {
-            moviesObject?.let {
-                val data = model.mapData(it)
-                viewState.initView(data)
+            override fun onSuccess(data: MoviesObject) {
+                moviesObject = data
+                mapData()
             }
-        }
+        })
     }
 
     /**
@@ -83,12 +57,12 @@ class MovieListPresenter : MvpPresenter<MovieListView>() {
     fun filterData(item: Genre) {
         if(checkedGenre == item) {
             checkedGenre = null
-            viewState.showMovies(moviesObject!!.movies)
+            viewState.setMoviesList(moviesObject!!.movies)
         } else {
             checkedGenre = item
             presenterScope.launch {
                 val filteredList = model.filterData(item.genre, moviesObject!!.movies)
-                viewState.showMovies(filteredList)
+                viewState.setMoviesList(filteredList)
             }
         }
     }
@@ -101,5 +75,16 @@ class MovieListPresenter : MvpPresenter<MovieListView>() {
             model.addFavorite(item)
         else
             model.deleteFavorite(item.id)
+    }
+
+    private fun mapData() {
+        presenterScope.launch {
+            moviesObject?.let { data ->
+                data.movies = data.movies.sortedBy { it.titleRU }
+                data.movies = model.getFavoritedMovies(data.movies)
+                data.genres = model.getGenres(data.movies)
+                viewState.showList(data)
+            }
+        }
     }
 }

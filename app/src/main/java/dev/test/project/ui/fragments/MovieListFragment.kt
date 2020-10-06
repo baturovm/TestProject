@@ -17,12 +17,10 @@ import dev.test.project.interfaces.GenreListener
 import dev.test.project.interfaces.MovieListener
 import dev.test.project.items.Genre
 import dev.test.project.items.Movie
+import dev.test.project.items.MoviesObject
 import dev.test.project.presentation.presenter.MovieListPresenter
 import dev.test.project.presentation.view.MovieListView
-import dev.test.project.utils.MOVIE_BUNDLE_KEY
-import dev.test.project.utils.MOVIE_RESULT_KEY
-import dev.test.project.utils.getNavigationResult
-import dev.test.project.utils.setVisibility
+import dev.test.project.utils.*
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 import moxy.ktx.moxyPresenter
 
@@ -56,15 +54,20 @@ class MovieListFragment : BaseFragment(R.layout.fragment_movie_list), MovieListV
         })
     }
 
-    override fun initView(list: MutableList<Any>) {
+    override fun showList(data: MoviesObject) {
         progress_bar_movie_list.setVisibility(false)
         rv_movie_list.setVisibility(true)
-        adapter.setData(list)
+        adapter.setData(mutableListOf<Any>().apply {
+            add(ResourceUtils.getString(R.string.genres))
+            addAll(data.genres)
+            add(ResourceUtils.getString(R.string.movies))
+            addAll(data.movies)
+        })
         adapter.setCheckedItem(presenter.checkedGenre)
         getMovieResultChanges()
     }
 
-    override fun showMovies(movies: List<Movie>) {
+    override fun setMoviesList(movies: List<Movie>) {
         adapter.setMovies(movies)
     }
 
